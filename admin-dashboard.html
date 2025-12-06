@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - EstateAlpha</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .dashboard-layout {
+      display: flex;
+      min-height: 100vh;
+      background: var(--bg-color);
+    }
+    
+    .dashboard-sidebar {
+      background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: white;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 260px;
+      overflow-y: auto;
+      z-index: 50;
+      transition: transform 0.3s ease;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    [dir="rtl"] .dashboard-sidebar {
+      left: auto;
+      right: 0;
+    }
+    
+    .dashboard-main {
+      margin-left: 260px;
+      flex: 1;
+      min-height: 100vh;
+      width: calc(100% - 260px);
+      transition: margin 0.3s ease;
+    }
+    
+    [dir="rtl"] .dashboard-main {
+      margin-left: 0;
+      margin-right: 260px;
+    }
+    
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      color: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      font-size: 0.95rem;
+    }
+    
+    [dir="rtl"] .sidebar-item {
+      border-left: none;
+      border-right: 3px solid transparent;
+    }
+    
+    .sidebar-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+    
+    .sidebar-item.active {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border-left-color: var(--accent-color);
+    }
+    
+    [dir="rtl"] .sidebar-item.active {
+      border-right-color: var(--accent-color);
+    }
+    
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+    
+    [data-theme="dark"] .stat-card {
+      background: #1E293B;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .chart-container {
+      position: relative;
+      height: 300px;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    
+    .status-active {
+      background: #DEF7EC;
+      color: #03543F;
+    }
+    
+    .status-pending {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+    
+    .status-rejected {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+    
+    @media (max-width: 1024px) {
+      .dashboard-main {
+        margin-left: 0;
+        width: 100%;
+      }
+      
+      [dir="rtl"] .dashboard-main {
+        margin-right: 0;
+      }
+      
+      .dashboard-sidebar {
+        transform: translateX(-100%);
+      }
+      
+      [dir="rtl"] .dashboard-sidebar {
+        transform: translateX(100%);
+      }
+      
+      .dashboard-sidebar.active,
+      .dashboard-sidebar.mobile-open {
+        transform: translateX(0);
+      }
+      
+      .stat-card {
+        padding: 1.25rem;
+      }
+      
+      .chart-container {
+        height: 250px;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .sidebar-item {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .stat-card h3 {
+        font-size: 1.5rem;
+      }
+      
+      .stat-card .w-16 {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+      
+      .dashboard-main {
+        margin-left: 0;
+      }
+      
+      [dir="rtl"] .dashboard-main {
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar" id="dashboardSidebar">
+      <div class="sidebar-brand" style="padding: 1.5rem 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+        <a href="index.html" class="logo-text text-2xl">EstateAlpha</a>
+        <p class="text-white/60 text-sm mt-2">Admin Dashboard</p>
+      </div>
+      
+      <div class="flex items-center gap-3 p-4 border-b border-white/10">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full border-2 border-white/20">
+        <div class="flex-1 min-w-0">
+          <p class="font-semibold text-white text-sm truncate">Admin User</p>
+          <p class="text-white/60 text-xs truncate">admin@estatealpha.com</p>
+        </div>
+      </div>
+      
+      <nav class="py-6">
+        <div class="sidebar-item active" onclick="showTab('overview')">
+          <i class="fas fa-th-large w-6"></i>
+          <span>Overview</span>
+        </div>
+        <div class="sidebar-item" onclick="showTab('properties')">
+          <i class="fas fa-building w-6"></i>
+          <span>Properties</span>
+          <span class="ml-auto bg-accent text-white text-xs px-2 py-1 rounded-full">8</span>
+        </div>
+        <div class="sidebar-item" onclick="showTab('users')">
+          <i class="fas fa-users w-6"></i>
+          <span>Users</span>
+        </div>
+        <div class="sidebar-item" onclick="showTab('analytics')">
+          <i class="fas fa-chart-bar w-6"></i>
+          <span>Analytics</span>
+        </div>
+        <div class="sidebar-item" onclick="showTab('reports')">
+          <i class="fas fa-file-alt w-6"></i>
+          <span>Reports</span>
+        </div>
+        <div class="sidebar-item" onclick="showTab('financial')">
+          <i class="fas fa-dollar-sign w-6"></i>
+          <span>Financial</span>
+        </div>
+        <div class="sidebar-item" onclick="showTab('settings')">
+          <i class="fas fa-cog w-6"></i>
+          <span>Settings</span>
+        </div>
+        <div class="sidebar-item" onclick="window.location.href='login.html'">
+          <i class="fas fa-sign-out-alt w-6"></i>
+          <span>Logout</span>
+        </div>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Top Header -->
+      <header class="bg-white shadow-sm p-6 sticky top-0 z-40" style="background: var(--bg-color);">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-4">
+            <button onclick="toggleSidebar()" class="lg:hidden text-2xl">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div>
+              <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+              <p class="text-gray-600 text-sm">Manage your real estate platform</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-4">
+            <button onclick="toggleRTL()" class="text-2xl hover:text-primary transition">
+              🌐
+            </button>
+            <button class="theme-toggle" onclick="toggleTheme()">
+              <span class="theme-toggle-slider"></span>
+            </button>
+            <div class="relative">
+              <button class="relative">
+                <i class="fas fa-bell text-2xl"></i>
+                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">5</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <div class="p-6">
+        <!-- Overview Tab -->
+        <div id="overview-tab" class="tab-content active">
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="stat-card">
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <p class="text-gray-500 text-xs font-medium mb-1.5 uppercase tracking-wide">Total Properties</p>
+                  <h3 class="text-2xl font-bold text-primary mb-1">1,234</h3>
+                  <p class="text-green-500 text-xs font-medium">
+                    <i class="fas fa-arrow-up"></i> 15% this month
+                  </p>
+                </div>
+                <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-building text-primary text-xl"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <p class="text-gray-500 text-xs font-medium mb-1.5 uppercase tracking-wide">Active Users</p>
+                  <h3 class="text-2xl font-bold text-green-600 mb-1">8,567</h3>
+                  <p class="text-green-500 text-xs font-medium">
+                    <i class="fas fa-arrow-up"></i> 23% growth
+                  </p>
+                </div>
+                <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-users text-green-600 text-xl"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <p class="text-gray-500 text-xs font-medium mb-1.5 uppercase tracking-wide">Monthly Revenue</p>
+                  <h3 class="text-2xl font-bold text-accent mb-1">$128K</h3>
+                  <p class="text-green-500 text-xs font-medium">
+                    <i class="fas fa-arrow-up"></i> 12% increase
+                  </p>
+                </div>
+                <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-dollar-sign text-accent text-xl"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <p class="text-gray-500 text-xs font-medium mb-1.5 uppercase tracking-wide">Pending Approvals</p>
+                  <h3 class="text-2xl font-bold text-purple-600 mb-1">45</h3>
+                  <p class="text-red-500 text-xs font-medium">
+                    <i class="fas fa-circle text-[8px]"></i> Needs attention
+                  </p>
+                </div>
+                <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0 relative">
+                  <i class="fas fa-clock text-purple-600 text-xl"></i>
+                  <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Charts Row -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+            <div class="stat-card">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold">Revenue Trend</h3>
+                <span class="text-xs text-gray-500">Last 6 months</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold">User Growth</h3>
+                <span class="text-xs text-gray-500">This year</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="userGrowthChart"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+            <div class="stat-card">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold">Property Categories</h3>
+                <span class="text-xs text-gray-500">Distribution</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="propertyTypeChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold">Recent Activities</h3>
+                <a href="#" class="text-xs text-primary font-medium hover:underline">View All</a>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors" style="background: var(--hover-bg);">
+                  <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-user-plus text-green-600"></i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-sm">New user registered</p>
+                    <p class="text-xs text-gray-600 truncate">John Smith joined the platform</p>
+                  </div>
+                  <span class="text-xs text-gray-500 flex-shrink-0">5m ago</span>
+                </div>
+                
+                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors" style="background: var(--hover-bg);">
+                  <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-home text-blue-600"></i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-sm">New property listed</p>
+                    <p class="text-xs text-gray-600 truncate">Luxury Villa in Miami</p>
+                  </div>
+                  <span class="text-xs text-gray-500 flex-shrink-0">12m ago</span>
+                </div>
+                
+                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors" style="background: var(--hover-bg);">
+                  <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-dollar-sign text-yellow-600"></i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-sm">Transaction completed</p>
+                    <p class="text-xs text-gray-600 truncate">Property sold for $850,000</p>
+                  </div>
+                  <span class="text-xs text-gray-500 flex-shrink-0">1h ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Properties Tab -->
+        <div id="properties-tab" class="tab-content">
+          <div class="mb-6 flex justify-between items-center flex-wrap gap-4">
+            <div>
+              <h2 class="text-2xl font-bold">Property Management</h2>
+              <p class="text-gray-600">Review and manage all properties</p>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-outline">
+                <i class="fas fa-filter"></i> Filter
+              </button>
+              <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Property
+              </button>
+            </div>
+          </div>
+          
+          <div class="stat-card overflow-x-auto">
+            <table class="min-w-full">
+              <thead>
+                <tr class="border-b-2 border-gray-200">
+                  <th class="text-left py-4 px-4 font-semibold">Property</th>
+                  <th class="text-left py-4 px-4 font-semibold">Owner</th>
+                  <th class="text-left py-4 px-4 font-semibold">Price</th>
+                  <th class="text-left py-4 px-4 font-semibold">Status</th>
+                  <th class="text-left py-4 px-4 font-semibold">Views</th>
+                  <th class="text-left py-4 px-4 font-semibold">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-100 hover:bg-gray-50" style="background: var(--hover-bg);">
+                  <td class="py-4 px-4">
+                    <div class="flex items-center gap-3">
+                      <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=80" class="w-12 h-12 rounded-lg object-cover">
+                      <div>
+                        <p class="font-semibold">Modern Apartment</p>
+                        <p class="text-sm text-gray-600">New York, NY</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="font-semibold">Michael Scott</p>
+                    <p class="text-sm text-gray-600">michael@email.com</p>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="font-bold text-primary">$450,000</p>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="status-badge status-active">Active</span>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="font-semibold">1,245</p>
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="flex gap-2">
+                      <button class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="text-green-600 hover:text-green-800">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                
+                <tr class="border-b border-gray-100 hover:bg-gray-50" style="background: var(--hover-bg);">
+                  <td class="py-4 px-4">
+                    <div class="flex items-center gap-3">
+                      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=80" class="w-12 h-12 rounded-lg object-cover">
+                      <div>
+                        <p class="font-semibold">Luxury Villa</p>
+                        <p class="text-sm text-gray-600">Los Angeles, CA</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="font-semibold">Sarah Parker</p>
+                    <p class="text-sm text-gray-600">sarah@email.com</p>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="font-bold text-primary">$1,850,000</p>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="status-badge status-pending">Pending</span>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="font-semibold">856</p>
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="flex gap-2">
+                      <button class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="text-green-600 hover:text-green-800">
+                        <i class="fas fa-check"></i>
+                      </button>
+                      <button class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                
+                <tr class="border-b border-gray-100 hover:bg-gray-50" style="background: var(--hover-bg);">
+                  <td class="py-4 px-4">
+                    <div class="flex items-center gap-3">
+                      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=80" class="w-12 h-12 rounded-lg object-cover">
+                      <div>
+                        <p class="font-semibold">Downtown Condo</p>
+                        <p class="text-sm text-gray-600">Chicago, IL</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="font-semibold">James Wilson</p>
+                    <p class="text-sm text-gray-600">james@email.com</p>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="font-bold text-primary">$325,000</p>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="status-badge status-rejected">Rejected</span>
+                  </td>
+                  <td class="py-4 px-4">
+                    <p class="font-semibold">412</p>
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="flex gap-2">
+                      <button class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="text-green-600 hover:text-green-800">
+                        <i class="fas fa-redo"></i>
+                      </button>
+                      <button class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Users Tab -->
+        <div id="users-tab" class="tab-content">
+          <div class="mb-6 flex justify-between items-center flex-wrap gap-4">
+            <div>
+              <h2 class="text-2xl font-bold">User Management</h2>
+              <p class="text-gray-600">Manage platform users and permissions</p>
+            </div>
+            <button class="btn btn-primary">
+              <i class="fas fa-user-plus"></i> Add User
+            </button>
+          </div>
+          
+          <div class="stat-card overflow-x-auto">
+            <table class="min-w-full">
+              <thead>
+                <tr class="border-b-2 border-gray-200">
+                  <th class="text-left py-4 px-4 font-semibold">User</th>
+                  <th class="text-left py-4 px-4 font-semibold">Email</th>
+                  <th class="text-left py-4 px-4 font-semibold">Role</th>
+                  <th class="text-left py-4 px-4 font-semibold">Status</th>
+                  <th class="text-left py-4 px-4 font-semibold">Joined</th>
+                  <th class="text-left py-4 px-4 font-semibold">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-100 hover:bg-gray-50" style="background: var(--hover-bg);">
+                  <td class="py-4 px-4">
+                    <div class="flex items-center gap-3">
+                      <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full">
+                      <p class="font-semibold">John Doe</p>
+                    </div>
+                  </td>
+                  <td class="py-4 px-4">john.doe@email.com</td>
+                  <td class="py-4 px-4">
+                    <span class="status-badge status-active">User</span>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="status-badge status-active">Active</span>
+                  </td>
+                  <td class="py-4 px-4">Jan 15, 2025</td>
+                  <td class="py-4 px-4">
+                    <div class="flex gap-2">
+                      <button class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="text-green-600 hover:text-green-800">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-ban"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                
+                <tr class="border-b border-gray-100 hover:bg-gray-50" style="background: var(--hover-bg);">
+                  <td class="py-4 px-4">
+                    <div class="flex items-center gap-3">
+                      <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-10 h-10 rounded-full">
+                      <p class="font-semibold">Sarah Johnson</p>
+                    </div>
+                  </td>
+                  <td class="py-4 px-4">sarah.j@email.com</td>
+                  <td class="py-4 px-4">
+                    <span class="status-badge status-pending">Agent</span>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="status-badge status-active">Active</span>
+                  </td>
+                  <td class="py-4 px-4">Feb 20, 2025</td>
+                  <td class="py-4 px-4">
+                    <div class="flex gap-2">
+                      <button class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="text-green-600 hover:text-green-800">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-ban"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Analytics Tab -->
+        <div id="analytics-tab" class="tab-content">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold">Platform Analytics</h2>
+            <p class="text-gray-600">Comprehensive insights and metrics</p>
+          </div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="stat-card">
+              <h3 class="text-xl font-bold mb-4">Traffic Sources</h3>
+              <div class="chart-container">
+                <canvas id="trafficChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <h3 class="text-xl font-bold mb-4">Conversion Rate</h3>
+              <div class="chart-container">
+                <canvas id="conversionChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="stat-card lg:col-span-2">
+              <h3 class="text-xl font-bold mb-4">Monthly Performance</h3>
+              <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reports Tab -->
+        <div id="reports-tab" class="tab-content">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold">Reports & Documents</h2>
+            <p class="text-gray-600">Generate and download reports</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="stat-card cursor-pointer hover:shadow-xl transition">
+              <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <i class="fas fa-file-pdf text-blue-600 text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Monthly Report</h3>
+              <p class="text-gray-600 text-sm mb-4">Comprehensive monthly performance analysis</p>
+              <button class="btn btn-outline w-full">
+                <i class="fas fa-download"></i> Download PDF
+              </button>
+            </div>
+            
+            <div class="stat-card cursor-pointer hover:shadow-xl transition">
+              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                <i class="fas fa-file-excel text-green-600 text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">User Analytics</h3>
+              <p class="text-gray-600 text-sm mb-4">Detailed user behavior and statistics</p>
+              <button class="btn btn-outline w-full">
+                <i class="fas fa-download"></i> Download Excel
+              </button>
+            </div>
+            
+            <div class="stat-card cursor-pointer hover:shadow-xl transition">
+              <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                <i class="fas fa-chart-line text-yellow-600 text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Revenue Report</h3>
+              <p class="text-gray-600 text-sm mb-4">Financial transactions and earnings</p>
+              <button class="btn btn-outline w-full">
+                <i class="fas fa-download"></i> Download PDF
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Financial Tab -->
+        <div id="financial-tab" class="tab-content">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold">Financial Overview</h2>
+            <p class="text-gray-600">Revenue, transactions, and payouts</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="stat-card">
+              <p class="text-gray-600 text-sm mb-1">Total Revenue</p>
+              <h3 class="text-3xl font-bold text-primary mb-2">$1.2M</h3>
+              <p class="text-green-500 text-sm">
+                <i class="fas fa-arrow-up"></i> 15% from last month
+              </p>
+            </div>
+            
+            <div class="stat-card">
+              <p class="text-gray-600 text-sm mb-1">Pending Payouts</p>
+              <h3 class="text-3xl font-bold text-accent mb-2">$45K</h3>
+              <p class="text-yellow-600 text-sm">
+                <i class="fas fa-clock"></i> 12 transactions
+              </p>
+            </div>
+            
+            <div class="stat-card">
+              <p class="text-gray-600 text-sm mb-1">Commission Earned</p>
+              <h3 class="text-3xl font-bold text-green-600 mb-2">$128K</h3>
+              <p class="text-green-500 text-sm">
+                <i class="fas fa-arrow-up"></i> 8% increase
+              </p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <h3 class="text-xl font-bold mb-4">Recent Transactions</h3>
+            <div class="overflow-x-auto">
+              <table class="min-w-full">
+                <thead>
+                  <tr class="border-b-2 border-gray-200">
+                    <th class="text-left py-3 px-4 font-semibold">Transaction ID</th>
+                    <th class="text-left py-3 px-4 font-semibold">Property</th>
+                    <th class="text-left py-3 px-4 font-semibold">Amount</th>
+                    <th class="text-left py-3 px-4 font-semibold">Date</th>
+                    <th class="text-left py-3 px-4 font-semibold">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-100">
+                    <td class="py-3 px-4 font-mono text-sm">#TXN-12456</td>
+                    <td class="py-3 px-4">Modern Apartment</td>
+                    <td class="py-3 px-4 font-bold text-green-600">+$45,000</td>
+                    <td class="py-3 px-4">Jun 12, 2025</td>
+                    <td class="py-3 px-4">
+                      <span class="status-badge status-active">Completed</span>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100">
+                    <td class="py-3 px-4 font-mono text-sm">#TXN-12455</td>
+                    <td class="py-3 px-4">Luxury Villa</td>
+                    <td class="py-3 px-4 font-bold text-yellow-600">$185,000</td>
+                    <td class="py-3 px-4">Jun 11, 2025</td>
+                    <td class="py-3 px-4">
+                      <span class="status-badge status-pending">Pending</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Settings Tab -->
+        <div id="settings-tab" class="tab-content">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold">System Settings</h2>
+            <p class="text-gray-600">Configure platform settings</p>
+          </div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="stat-card">
+              <h3 class="text-lg font-bold mb-4">Platform Configuration</h3>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg" style="background: var(--hover-bg);">
+                  <div>
+                    <p class="font-semibold">Maintenance Mode</p>
+                    <p class="text-sm text-gray-600">Temporarily disable the platform</p>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                  </label>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg" style="background: var(--hover-bg);">
+                  <div>
+                    <p class="font-semibold">Auto-Approve Properties</p>
+                    <p class="text-sm text-gray-600">Automatically approve new listings</p>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <h3 class="text-lg font-bold mb-4">Email Notifications</h3>
+              <form class="space-y-4">
+                <div>
+                  <label class="form-label">Admin Email</label>
+                  <input type="email" class="form-control" value="admin@estatealpha.com">
+                </div>
+                <div>
+                  <label class="form-label">Support Email</label>
+                  <input type="email" class="form-control" value="support@estatealpha.com">
+                </div>
+                <button type="submit" class="btn btn-primary w-full">
+                  <i class="fas fa-save"></i> Save Settings
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script src="js/main.js"></script>
+  <script src="js/rtl-toggle.js"></script>
+  <script>
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      document.querySelectorAll('.sidebar-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      document.getElementById(tabName + '-tab').classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+    
+    function toggleSidebar() {
+      const sidebar = document.getElementById('dashboardSidebar');
+      sidebar.classList.toggle('active');
+      sidebar.classList.toggle('mobile-open');
+    }
+    
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+      const sidebar = document.getElementById('dashboardSidebar');
+      const toggleButton = document.querySelector('[onclick="toggleSidebar()"]');
+      
+      if (window.innerWidth < 1024 && sidebar.classList.contains('active')) {
+        if (!sidebar.contains(e.target) && !toggleButton.contains(e.target)) {
+          sidebar.classList.remove('active');
+          sidebar.classList.remove('mobile-open');
+        }
+      }
+    });
+    
+    const chartColors = {
+      primary: '#1E40AF',
+      secondary: '#60A5FA',
+      accent: '#F59E0B',
+      success: '#10B981',
+      danger: '#EF4444',
+      purple: '#8B5CF6'
+    };
+    
+    // Revenue Chart
+    new Chart(document.getElementById('revenueChart'), {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Revenue',
+          data: [85000, 92000, 88000, 105000, 115000, 128000],
+          borderColor: chartColors.primary,
+          backgroundColor: chartColors.secondary + '20',
+          tension: 0.4,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+    
+    // User Growth Chart
+    new Chart(document.getElementById('userGrowthChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'New Users',
+          data: [245, 312, 289, 387, 425, 489],
+          backgroundColor: chartColors.accent
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+    
+    // Property Type Chart
+    new Chart(document.getElementById('propertyTypeChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Apartments', 'Houses', 'Villas', 'Commercial'],
+        datasets: [{
+          data: [345, 256, 128, 127],
+          backgroundColor: [chartColors.primary, chartColors.accent, chartColors.success, chartColors.purple]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+    
+    // Traffic Chart
+    new Chart(document.getElementById('trafficChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Direct', 'Search', 'Social', 'Referral'],
+        datasets: [{
+          data: [45, 30, 15, 10],
+          backgroundColor: [chartColors.primary, chartColors.accent, chartColors.success, chartColors.danger]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+    
+    // Conversion Chart
+    new Chart(document.getElementById('conversionChart'), {
+      type: 'line',
+      data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+          label: 'Conversion %',
+          data: [3.2, 3.8, 4.1, 4.5],
+          borderColor: chartColors.success,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+    
+    // Performance Chart
+    new Chart(document.getElementById('performanceChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [
+          {
+            label: 'Properties Listed',
+            data: [45, 52, 48, 58, 65, 72],
+            backgroundColor: chartColors.primary
+          },
+          {
+            label: 'Properties Sold',
+            data: [23, 28, 25, 32, 38, 42],
+            backgroundColor: chartColors.success
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  </script>
+</body>
+</html>

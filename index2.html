@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EstateAlpha - Classic Elegance in Real Estate</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <style>
+    .hero-video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 64, 175, 0.7));
+      z-index: 1;
+    }
+    
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    
+    @media (max-width: 768px) {
+      .split-section {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .luxury-card {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    [data-theme="dark"] .luxury-card {
+      background: rgba(30, 41, 59, 0.95);
+    }
+    
+    .elegant-border {
+      border: 2px solid var(--accent-color);
+      border-radius: 0;
+      position: relative;
+    }
+    
+    .elegant-border::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border: 1px solid var(--accent-color);
+      opacity: 0.3;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <a href="index2.html" class="logo-text text-3xl">EstateAlpha</a>
+        
+        <div class="hidden lg:flex items-center gap-8">
+          <div class="dropdown">
+            <button class="nav-link flex items-center gap-2">
+              Home <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="index.html">Modern View</a>
+              <a href="index2.html">Classic View</a>
+            </div>
+          </div>
+          
+          <a href="about.html" class="nav-link">About</a>
+          <a href="property-details.html" class="nav-link">Properties</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          
+          <div class="dropdown">
+            <button class="nav-link flex items-center gap-2">
+              Dashboard <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="user-dashboard.html">User Panel</a>
+              <a href="admin-dashboard.html">Admin Panel</a>
+            </div>
+          </div>
+          
+          <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+            <div class="theme-toggle-slider">
+              <i class="fas fa-sun"></i>
+            </div>
+          </button>
+          
+          <button id="rtlToggle" class="rtl-toggle" aria-label="Toggle RTL">
+            <i class="fas fa-globe"></i>
+          </button>
+          
+          <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+        
+        <button class="lg:hidden mobile-menu-button text-2xl">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="mobile-menu lg:hidden">
+      <div class="container mx-auto px-4 py-4">
+        <a href="index.html" class="block py-2 nav-link">Home - Modern</a>
+        <a href="index2.html" class="block py-2 nav-link">Home - Classic</a>
+        <a href="about.html" class="block py-2 nav-link">About</a>
+        <a href="property-details.html" class="block py-2 nav-link">Properties</a>
+        <a href="faq.html" class="block py-2 nav-link">FAQ</a>
+        <a href="contact.html" class="block py-2 nav-link">Contact</a>
+        <a href="user-dashboard.html" class="block py-2 nav-link">User Dashboard</a>
+        <a href="admin-dashboard.html" class="block py-2 nav-link">Admin Dashboard</a>
+        
+        <div class="flex items-center gap-4 mt-4">
+          <button id="themeToggleMobile" class="theme-toggle">
+            <div class="theme-toggle-slider"><i class="fas fa-sun"></i></div>
+          </button>
+          <button id="rtlToggleMobile" class="rtl-toggle"><i class="fas fa-globe"></i></button>
+          <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Split Design -->
+  <section class="pt-20">
+    <div class="split-section min-h-screen">
+      <!-- Left Side - Content -->
+      <div class="flex items-center justify-center p-8 md:p-16" style="background: linear-gradient(135deg, var(--surface), var(--background));">
+        <div class="max-w-xl" data-aos="fade-right">
+          <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-4 block">Premium Real Estate</span>
+          <h1 class="text-5xl md:text-6xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
+            Timeless Elegance, <br>Modern Living
+          </h1>
+          <p class="text-xl mb-8 text-gray-600">
+            Experience luxury properties that blend classic architecture with contemporary comfort. Your dream estate awaits.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 mb-12">
+            <a href="property-details.html" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+              Explore Properties
+            </a>
+            <a href="contact.html" class="btn btn-outline">
+              <i class="fas fa-phone"></i>
+              Schedule Tour
+            </a>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold gradient-text counter" data-target="1500">0</div>
+              <div class="text-sm text-gray-600">Luxury Homes</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold gradient-text counter" data-target="850">0</div>
+              <div class="text-sm text-gray-600">Happy Families</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold gradient-text counter" data-target="98">0</div>
+              <div class="text-sm text-gray-600">Satisfaction %</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Side - Image -->
+      <div class="relative min-h-[500px] md:min-h-screen" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80'); background-size: cover; background-position: center;" data-aos="fade-left">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Section -->
+  <section class="py-16" style="background: var(--surface);">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto luxury-card p-8 rounded-2xl shadow-2xl" data-aos="zoom-in">
+        <h3 class="text-2xl font-bold mb-6 text-center">Find Your Perfect Property</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div>
+            <input type="text" class="form-control" placeholder="Location">
+          </div>
+          <div>
+            <select class="form-control">
+              <option>Property Type</option>
+              <option>Mansion</option>
+              <option>Villa</option>
+              <option>Penthouse</option>
+              <option>Estate</option>
+            </select>
+          </div>
+          <div>
+            <select class="form-control">
+              <option>Budget Range</option>
+              <option>$500K - $1M</option>
+              <option>$1M - $2M</option>
+              <option>$2M - $5M</option>
+              <option>$5M+</option>
+            </select>
+          </div>
+          <div>
+            <select class="form-control">
+              <option>Bedrooms</option>
+              <option>3+</option>
+              <option>4+</option>
+              <option>5+</option>
+              <option>6+</option>
+            </select>
+          </div>
+          <button class="btn btn-primary w-full">
+            <i class="fas fa-search"></i>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Collections -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-2 block">Exclusive Collections</span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Signature Properties</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Curated selection of the most prestigious properties in prime locations
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- Large Featured Property -->
+        <div class="property-card elegant-border" data-aos="fade-right">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" alt="Estate" class="w-full h-[500px] object-cover">
+            <div class="absolute top-6 left-6">
+              <span class="bg-yellow-500 text-white px-4 py-2 rounded-full text-sm font-bold">Signature Estate</span>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black to-transparent text-white">
+              <h3 class="text-3xl font-bold mb-2">Grand Mediterranean Villa</h3>
+              <p class="text-xl mb-4">Beverly Hills, California</p>
+              <div class="flex justify-between items-center">
+                <div class="flex gap-6">
+                  <span><i class="fas fa-bed"></i> 8 Beds</span>
+                  <span><i class="fas fa-bath"></i> 7 Baths</span>
+                  <span><i class="fas fa-ruler-combined"></i> 12,000 sqft</span>
+                </div>
+                <div class="text-3xl font-bold">$8.5M</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Grid of smaller properties -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="property-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80" alt="Property" class="w-full h-56 object-cover">
+            </div>
+            <div class="p-4">
+              <h4 class="text-xl font-bold mb-2">Skyline Penthouse</h4>
+              <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt"></i> Manhattan, NY</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm"><i class="fas fa-bed"></i> 4 <i class="fas fa-bath ml-3"></i> 3</span>
+                <span class="font-bold gradient-text">$3.2M</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="property-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400&q=80" alt="Property" class="w-full h-56 object-cover">
+            </div>
+            <div class="p-4">
+              <h4 class="text-xl font-bold mb-2">Waterfront Estate</h4>
+              <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt"></i> Miami, FL</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm"><i class="fas fa-bed"></i> 6 <i class="fas fa-bath ml-3"></i> 5</span>
+                <span class="font-bold gradient-text">$4.8M</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="property-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Property" class="w-full h-56 object-cover">
+            </div>
+            <div class="p-4">
+              <h4 class="text-xl font-bold mb-2">Mountain Retreat</h4>
+              <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt"></i> Aspen, CO</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm"><i class="fas fa-bed"></i> 5 <i class="fas fa-bath ml-3"></i> 4</span>
+                <span class="font-bold gradient-text">$5.5M</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="property-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=80" alt="Property" class="w-full h-56 object-cover">
+            </div>
+            <div class="p-4">
+              <h4 class="text-xl font-bold mb-2">Modern Mansion</h4>
+              <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt"></i> Houston, TX</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm"><i class="fas fa-bed"></i> 7 <i class="fas fa-bath ml-3"></i> 6</span>
+                <span class="font-bold gradient-text">$6.2M</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center" data-aos="fade-up">
+        <a href="property-details.html" class="btn btn-outline btn-lg">
+          View All Luxury Properties
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="py-20" style="background: var(--surface);">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-2 block">Our Services</span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Comprehensive Real Estate Solutions</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="card text-center hover:shadow-glow" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon mx-auto">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Buy Property</h3>
+          <p class="text-gray-600">Find your dream home from our exclusive listings</p>
+        </div>
+        
+        <div class="card text-center hover:shadow-glow" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon mx-auto">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Sell Property</h3>
+          <p class="text-gray-600">Get the best value with our expert agents</p>
+        </div>
+        
+        <div class="card text-center hover:shadow-glow" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon mx-auto">
+            <i class="fas fa-key"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Rent Property</h3>
+          <p class="text-gray-600">Premium rental options for every lifestyle</p>
+        </div>
+        
+        <div class="card text-center hover:shadow-glow" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon mx-auto">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Investment</h3>
+          <p class="text-gray-600">Smart property investment opportunities</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-2 block">Client Stories</span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center gap-4 mb-4">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-16 h-16 rounded-full">
+            <div>
+              <h4 class="font-bold">Michael Anderson</h4>
+              <div class="text-yellow-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "EstateAlpha helped us find our dream home. Their professionalism and attention to detail made the entire process seamless."
+          </p>
+        </div>
+        
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center gap-4 mb-4">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-16 h-16 rounded-full">
+            <div>
+              <h4 class="font-bold">Sarah Johnson</h4>
+              <div class="text-yellow-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "Outstanding service! They understood exactly what we wanted and found the perfect property within our budget."
+          </p>
+        </div>
+        
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-center gap-4 mb-4">
+            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Client" class="w-16 h-16 rounded-full">
+            <div>
+              <h4 class="font-bold">David Martinez</h4>
+              <div class="text-yellow-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "The team at EstateAlpha is incredibly knowledgeable. They guided us through every step of buying our first luxury home."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 relative" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="absolute inset-0 bg-black/70"></div>
+    <div class="container mx-auto px-4 text-center relative z-10" data-aos="zoom-in">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Start Your Property Journey Today</h2>
+      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+        Let our experts guide you to your perfect property
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="property-details.html" class="btn btn-primary btn-lg">
+          Browse Properties
+        </a>
+        <a href="contact.html" class="btn btn-glass btn-lg">
+          Contact Agent
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <!-- Enhanced Modern Footer -->
+  <footer class="footer-modern">
+    <div class="container mx-auto px-4">
+      <!-- Newsletter Section -->
+      <div class="footer-newsletter" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto text-center">
+          <h3 class="text-2xl font-bold mb-3">Stay Updated with Property News</h3>
+          <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market insights, and exclusive offers.</p>
+          <form class="flex gap-3 max-w-md mx-auto" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" placeholder="Enter your email" class="form-control flex-1" required>
+            <button type="submit" class="btn btn-primary whitespace-nowrap">
+              <i class="fas fa-paper-plane"></i>
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Main Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 py-4">
+        <div class="lg:col-span-2">
+          <a href="index.html" class="logo-text text-3xl mb-4 block">EstateAlpha</a>
+          <p class="text-gray-400 mb-6 leading-relaxed">
+            Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their dream properties through innovative technology and exceptional service. Excellence in real estate since 2010.
+          </p>
+          <div class="flex gap-3">
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="property-details.html" class="footer-link"><i class="fas fa-chevron-right"></i> Properties</a></li>
+            <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            <li><a href="faq.html" class="footer-link"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+            <li><a href="login.html" class="footer-link"><i class="fas fa-chevron-right"></i> Login</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Apartments</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Houses</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Villas & Estates</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Commercial</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Land & Plots</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Contact Us</h4>
+          <ul class="footer-contact">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>123 Real Estate Avenue<br>Suite 100, New York<br>NY 10001, USA</span>
+            </li>
+            <li>
+              <i class="fas fa-phone-alt"></i>
+              <span>+1 (555) 123-4567<br>+1 (555) 987-6543</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@estatealpha.com<br>support@estatealpha.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Trust Badges -->
+      <div class="footer-trust-badges" data-aos="fade-up">
+        <div class="flex flex-wrap justify-center items-center gap-8">
+          <div class="trust-badge">
+            <i class="fas fa-shield-alt text-3xl mb-2"></i>
+            <p class="font-semibold">Secure Transactions</p>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-award text-3xl mb-2"></i>
+            <p class="font-semibold">Award Winning</p>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-users text-3xl mb-2"></i>
+            <p class="font-semibold">10K+ Happy Clients</p>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-headset text-3xl mb-2"></i>
+            <p class="font-semibold">24/7 Support</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="text-gray-400 text-sm">
+            &copy; 2025 EstateAlpha. All rights reserved.
+          </p>
+          <div class="flex flex-wrap gap-4 text-sm">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <span class="text-gray-600">•</span>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <span class="text-gray-600">•</span>
+            <a href="#" class="footer-link">Cookie Policy</a>
+            <span class="text-gray-600">•</span>
+            <a href="#" class="footer-link">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/rtl-toggle.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+    
+    // Mobile menu toggle
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      // Toggle menu on button click
+      mobileMenuButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('active');
+      });
+      
+      // Close mobile menu when clicking on a link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          mobileMenu.classList.remove('active');
+        });
+      });
+      
+      // Prevent clicks inside menu from closing it
+      mobileMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (mobileMenu && mobileMenu.classList.contains('active')) {
+        const clickedButton = mobileMenuButton && mobileMenuButton.contains(e.target);
+        if (!clickedButton) {
+          mobileMenu.classList.remove('active');
+        }
+      }
+    });
+    
+    document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
+  </script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - EstateAlpha</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <a href="index.html" class="logo-text text-2xl">EstateAlpha</a>
+        
+        <div class="hidden lg:flex items-center gap-8">
+          <div class="dropdown">
+            <button class="nav-link dropdown-toggle">
+              Home <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="index.html" class="dropdown-item">Home 1</a>
+              <a href="index2.html" class="dropdown-item">Home 2</a>
+            </div>
+          </div>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="property-details.html" class="nav-link">Properties</a>
+          <a href="faq.html" class="nav-link active">FAQ</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <div class="dropdown">
+            <button class="nav-link dropdown-toggle">
+              Dashboard <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="user-dashboard.html" class="dropdown-item">User Dashboard</a>
+              <a href="admin-dashboard.html" class="dropdown-item">Admin Dashboard</a>
+            </div>
+          </div>
+          <button onclick="toggleRTL()" class="text-2xl hover:text-primary transition">🌐</button>
+          <button class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-toggle-slider"></span>
+          </button>
+          <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+        
+        <button class="mobile-menu-button lg:hidden text-2xl">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu lg:hidden" style="position: fixed; display: block;">
+      <div class="container mx-auto px-4 py-4">
+        <a href="index.html" class="block py-2 nav-link">Home - Modern</a>
+        <a href="index2.html" class="block py-2 nav-link">Home - Classic</a>
+        <a href="about.html" class="block py-2 nav-link">About</a>
+        <a href="property-details.html" class="block py-2 nav-link">Properties</a>
+        <a href="faq.html" class="block py-2 nav-link">FAQ</a>
+        <a href="contact.html" class="block py-2 nav-link">Contact</a>
+        <a href="user-dashboard.html" class="block py-2 nav-link">User Dashboard</a>
+        <a href="admin-dashboard.html" class="block py-2 nav-link">Admin Dashboard</a>
+        
+        <div class="flex items-center gap-4 mt-4">
+          <button id="themeToggleMobile" class="theme-toggle">
+            <div class="theme-toggle-slider">
+              <i class="fas fa-sun"></i>
+            </div>
+          </button>
+          <button id="rtlToggleMobile" class="rtl-toggle">
+            <i class="fas fa-globe"></i>
+          </button>
+          <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-accent opacity-10 rounded-full -mr-48 -mt-48"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">Frequently Asked Questions</h1>
+        <p class="text-xl opacity-90">Find answers to common questions about our services and properties</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Categories -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-6 mb-16">
+        <button class="faq-category active" onclick="filterFAQ('all')" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-th-large text-3xl mb-3"></i>
+          <h3 class="font-semibold">All Topics</h3>
+        </button>
+        <button class="faq-category" onclick="filterFAQ('general')" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-info-circle text-3xl mb-3"></i>
+          <h3 class="font-semibold">General</h3>
+        </button>
+        <button class="faq-category" onclick="filterFAQ('buying')" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-home text-3xl mb-3"></i>
+          <h3 class="font-semibold">Buying</h3>
+        </button>
+        <button class="faq-category" onclick="filterFAQ('selling')" data-aos="fade-up" data-aos-delay="400">
+          <i class="fas fa-dollar-sign text-3xl mb-3"></i>
+          <h3 class="font-semibold">Selling</h3>
+        </button>
+      </div>
+      
+      <!-- FAQ Accordions -->
+      <div class="max-w-4xl mx-auto space-y-4">
+        <!-- General FAQs -->
+        <div class="faq-item general" data-aos="fade-up">
+          <button class="faq-question">
+            <span>What is EstateAlpha?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>EstateAlpha is a leading real estate platform that connects buyers, sellers, and renters with their ideal properties. We offer a comprehensive database of listings, expert guidance, and cutting-edge tools to make your property search seamless and efficient.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item general" data-aos="fade-up">
+          <button class="faq-question">
+            <span>How do I create an account?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Creating an account is simple! Click the "Login" button in the navigation bar, then select "Sign Up". Fill in your details including name, email, and password. Once you verify your email address, you'll have full access to all our features including saved searches, property alerts, and your personal dashboard.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item general" data-aos="fade-up">
+          <button class="faq-question">
+            <span>Is EstateAlpha free to use?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Browsing properties, saving favorites, and contacting agents through EstateAlpha is completely free for buyers and renters. We also offer premium features for sellers and agents to enhance their listings and reach more potential clients.</p>
+          </div>
+        </div>
+        
+        <!-- Buying FAQs -->
+        <div class="faq-item buying" data-aos="fade-up">
+          <button class="faq-question">
+            <span>How do I search for properties?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Use our advanced search feature on the homepage to filter properties by location, price range, property type, number of bedrooms/bathrooms, and more. You can also use our interactive map to explore properties in specific neighborhoods. Save your searches to receive instant notifications when new matching properties become available.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item buying" data-aos="fade-up">
+          <button class="faq-question">
+            <span>Can I schedule property viewings online?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely! Each property listing has a "Schedule Visit" button. Simply select your preferred date and time, and our system will coordinate with the property agent. You'll receive a confirmation email with all the details including the agent's contact information and directions to the property.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item buying" data-aos="fade-up">
+          <button class="faq-question">
+            <span>What documents do I need to buy a property?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Typically, you'll need: valid government-issued ID, proof of income (pay stubs, tax returns), bank statements, pre-approval letter from your lender, and employment verification. Our agents can provide a complete checklist and guide you through the documentation process to ensure a smooth transaction.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item buying" data-aos="fade-up">
+          <button class="faq-question">
+            <span>How long does the buying process take?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>The timeline varies, but typically takes 30-60 days from offer acceptance to closing. This includes home inspection (7-14 days), mortgage approval (30-45 days), and final closing procedures. Cash buyers can often close faster, sometimes in as little as 2-3 weeks. Our team works to expedite the process while ensuring all legal requirements are met.</p>
+          </div>
+        </div>
+        
+        <!-- Selling FAQs -->
+        <div class="faq-item selling" data-aos="fade-up">
+          <button class="faq-question">
+            <span>How do I list my property on EstateAlpha?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Log into your account and navigate to "List Property" in your dashboard. Fill in the property details, upload high-quality photos, and provide accurate descriptions. Our team reviews each listing within 24 hours to ensure quality and accuracy. Premium listings with professional photography and virtual tours receive priority placement.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item selling" data-aos="fade-up">
+          <button class="faq-question">
+            <span>What fees do you charge for listing properties?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>We offer flexible pricing plans: Basic listings are free with standard features. Premium plans ($99-$299/month) include featured placement, professional photography services, virtual tours, and enhanced analytics. We also offer commission-based options where you only pay upon successful sale (typically 2-3% of sale price).</p>
+          </div>
+        </div>
+        
+        <div class="faq-item selling" data-aos="fade-up">
+          <button class="faq-question">
+            <span>How do I determine the right price for my property?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>We provide free market analysis tools that compare your property with recent sales in your area. Our AI-powered valuation considers location, size, amenities, condition, and market trends. Additionally, you can request a professional appraisal from our network of certified appraisers for the most accurate pricing guidance.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item selling" data-aos="fade-up">
+          <button class="faq-question">
+            <span>What should I do to prepare my home for sale?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Key preparation steps include: deep cleaning, decluttering, making minor repairs, fresh paint in neutral colors, enhancing curb appeal, and staging rooms to showcase their best features. We offer a comprehensive seller's guide and can connect you with professional staging services to maximize your property's appeal and sale price.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item general" data-aos="fade-up">
+          <button class="faq-question">
+            <span>How do I contact customer support?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>We're here to help! You can reach our support team via: email at support@estatealpha.com, phone at +1 (555) 123-4567 (Mon-Fri 9am-6pm), or live chat on our website. For urgent matters, our emergency hotline is available 24/7. Response time is typically under 2 hours during business hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Support Section -->
+  <section class="py-16 bg-gray-50" style="background: var(--hover-bg);">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Still Have Questions -->
+        <div class="text-center bg-white rounded-2xl p-8 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-question-circle text-primary text-3xl"></i>
+          </div>
+          <h2 class="text-2xl font-bold mb-3">Still Have Questions?</h2>
+          <p class="text-gray-600 mb-6">Can't find the answer you're looking for? Our friendly team is here to help.</p>
+          <a href="contact.html" class="btn btn-primary inline-flex items-center gap-2">
+            <i class="fas fa-comments"></i>
+            Ask a Question
+          </a>
+        </div>
+        
+        <!-- Contact Support -->
+        <div class="text-center bg-white rounded-2xl p-8 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-headset text-accent text-3xl"></i>
+          </div>
+          <h2 class="text-2xl font-bold mb-3">Contact Support</h2>
+          <p class="text-gray-600 mb-6">Need immediate assistance? Reach out to our support team available 24/7.</p>
+          <a href="contact.html" class="btn btn-accent inline-flex items-center gap-2">
+            <i class="fas fa-envelope"></i>
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <!-- Enhanced Modern Footer -->
+  <footer class="footer-modern">
+    <div class="container mx-auto px-4">
+      <!-- Newsletter Section -->
+      <div class="footer-newsletter" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto text-center">
+          <h3 class="text-2xl font-bold mb-3">Stay Updated with Property News</h3>
+          <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market insights, and exclusive offers.</p>
+          <form class="flex gap-3 max-w-md mx-auto" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" placeholder="Enter your email" class="form-control flex-1" required>
+            <button type="submit" class="btn btn-primary whitespace-nowrap">
+              <i class="fas fa-paper-plane"></i>
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Main Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 py-4">
+        <div class="lg:col-span-2 footer-brand-section">
+          <a href="index.html" class="logo-text text-3xl mb-4 block">EstateAlpha</a>
+          <p class="text-gray-400 mb-6 leading-relaxed">
+            Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their dream properties through innovative technology and exceptional service. Excellence in real estate since 2010.
+          </p>
+          <div class="flex gap-3">
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="property-details.html" class="footer-link"><i class="fas fa-chevron-right"></i> Properties</a></li>
+            <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            <li><a href="faq.html" class="footer-link"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+            <li><a href="login.html" class="footer-link"><i class="fas fa-chevron-right"></i> Login</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Apartments</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Houses</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Villas & Estates</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Commercial</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Land & Plots</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Contact Us</h4>
+          <ul class="footer-contact">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>123 Real Estate Avenue<br>Suite 100, New York<br>NY 10001, USA</span>
+            </li>
+            <li>
+              <i class="fas fa-phone-alt"></i>
+              <span>+1 (555) 123-4567<br>+1 (555) 987-6543</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@estatealpha.com<br>support@estatealpha.com</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="footer-legal-section">
+          <h4 class="footer-heading">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Trust Badges -->
+      <div class="footer-trust-badges" data-aos="fade-up">
+        <div class="flex flex-wrap justify-center items-center gap-8">
+          <div class="trust-badge">
+            <i class="fas fa-shield-alt text-3xl mb-2"></i>
+            <p class="font-semibold">Secure Transactions</p>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-award text-3xl mb-2"></i>
+            <p class="font-semibold">Award Winning</p>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-users text-3xl mb-2"></i>
+            <p class="font-semibold">10K+ Happy Clients</p>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-headset text-3xl mb-2"></i>
+            <p class="font-semibold">24/7 Support</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p class="text-gray-400 text-sm text-center">
+          &copy; 2025 EstateAlpha. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/rtl-toggle.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+    
+    // Mobile menu toggle - Fixed with proper event handling
+    function initMobileMenu() {
+      const button = document.querySelector('.mobile-menu-button');
+      const menu = document.getElementById('mobileMenu');
+      
+      if (!button || !menu) return;
+      
+      let isTogglingMenu = false;
+      
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        isTogglingMenu = true;
+        menu.classList.toggle('active');
+        setTimeout(function() { isTogglingMenu = false; }, 100);
+      });
+      
+      const links = menu.querySelectorAll('a');
+      links.forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.remove('active');
+        });
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (isTogglingMenu) return;
+        if (menu.classList.contains('active')) {
+          if (!menu.contains(e.target) && !button.contains(e.target)) {
+            menu.classList.remove('active');
+          }
+        }
+      });
+      
+      menu.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+    
+    initMobileMenu();
+    
+    // FAQ Category Filter
+    function filterFAQ(category) {
+      const buttons = document.querySelectorAll('.faq-category');
+      const items = document.querySelectorAll('.faq-item');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+  
+  <style>
+    .faq-category {
+      padding: 2rem;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      text-align: center;
+    }
+    
+    [data-theme="dark"] .faq-category {
+      background: #1E293B;
+    }
+    
+    .faq-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.15);
+    }
+    
+    .faq-category.active {
+      border-color: var(--primary-color);
+      background: var(--primary-color);
+      color: white;
+    }
+  </style>
+</body>
+</html>

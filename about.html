@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - EstateAlpha</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <a href="index.html" class="logo-text text-2xl">EstateAlpha</a>
+        
+        <div class="hidden lg:flex items-center gap-8">
+          <div class="dropdown">
+            <button class="nav-link dropdown-toggle">
+              Home <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="index.html" class="dropdown-item">Home 1</a>
+              <a href="index2.html" class="dropdown-item">Home 2</a>
+            </div>
+          </div>
+          <a href="about.html" class="nav-link active">About</a>
+          <a href="property-details.html" class="nav-link">Properties</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <div class="dropdown">
+            <button class="nav-link dropdown-toggle">
+              Dashboard <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="user-dashboard.html" class="dropdown-item">User Dashboard</a>
+              <a href="admin-dashboard.html" class="dropdown-item">Admin Dashboard</a>
+            </div>
+          </div>
+          <button onclick="toggleRTL()" class="text-2xl hover:text-primary transition">🌐</button>
+          <button class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-toggle-slider"></span>
+          </button>
+          <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+        
+        <button class="mobile-menu-button lg:hidden text-2xl">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu lg:hidden" style="position: fixed; display: block;">
+      <div class="container mx-auto px-4 py-4">
+        <a href="index.html" class="block py-2 nav-link">Home - Modern</a>
+        <a href="index2.html" class="block py-2 nav-link">Home - Classic</a>
+        <a href="about.html" class="block py-2 nav-link">About</a>
+        <a href="property-details.html" class="block py-2 nav-link">Properties</a>
+        <a href="faq.html" class="block py-2 nav-link">FAQ</a>
+        <a href="contact.html" class="block py-2 nav-link">Contact</a>
+        <a href="user-dashboard.html" class="block py-2 nav-link">User Dashboard</a>
+        <a href="admin-dashboard.html" class="block py-2 nav-link">Admin Dashboard</a>
+        
+        <div class="flex items-center gap-4 mt-4">
+          <button id="themeToggleMobile" class="theme-toggle">
+            <div class="theme-toggle-slider">
+              <i class="fas fa-sun"></i>
+            </div>
+          </button>
+          <button id="rtlToggleMobile" class="rtl-toggle">
+            <i class="fas fa-globe"></i>
+          </button>
+          <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-accent opacity-10 rounded-full -mr-48 -mt-48"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">About EstateAlpha</h1>
+        <p class="text-base md:text-xl opacity-90">Revolutionizing real estate through innovation, trust, and exceptional service</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-right">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600" alt="Our Story" class="rounded-2xl shadow-2xl">
+        </div>
+        <div data-aos="fade-left">
+          <span class="text-accent font-semibold text-sm uppercase tracking-wider">Our Story</span>
+          <h2 class="text-4xl font-bold mt-4 mb-6">Building Dreams Since 2010</h2>
+          <p class="text-gray-600 mb-4 leading-relaxed">
+            EstateAlpha was founded with a simple yet powerful vision: to make finding your dream property as seamless and enjoyable as possible. Over the years, we've grown from a small local agency to a leading real estate platform serving thousands of satisfied clients.
+          </p>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            Our team of dedicated professionals brings decades of combined experience in real estate, technology, and customer service. We leverage cutting-edge technology to provide you with the most accurate property listings, market insights, and personalized recommendations.
+          </p>
+          <div class="grid grid-cols-3 gap-4 mt-8">
+            <div class="text-center">
+              <h3 class="text-3xl font-bold text-primary">15+</h3>
+              <p class="text-gray-600 text-sm">Years Experience</p>
+            </div>
+            <div class="text-center">
+              <h3 class="text-3xl font-bold text-primary">10K+</h3>
+              <p class="text-gray-600 text-sm">Happy Clients</p>
+            </div>
+            <div class="text-center">
+              <h3 class="text-3xl font-bold text-primary">5K+</h3>
+              <p class="text-gray-600 text-sm">Properties Sold</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="py-20 bg-gray-50" style="background: var(--hover-bg);">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-bullseye text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+          <p class="text-gray-600 leading-relaxed">
+            To empower individuals and families to find their perfect home by providing exceptional service, innovative technology, and expert guidance throughout every step of their real estate journey.
+          </p>
+        </div>
+        
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-eye text-accent text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Our Vision</h3>
+          <p class="text-gray-600 leading-relaxed">
+            To become the most trusted and innovative real estate platform globally, setting new standards for transparency, efficiency, and customer satisfaction in the property market.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Our Team</span>
+        <h2 class="text-4xl font-bold mt-4 mb-6">Meet Our Experts</h2>
+        <p class="text-gray-600">Passionate professionals dedicated to helping you find your dream property</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="card text-center group" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-primary/20 group-hover:border-primary transition">
+          <h3 class="text-xl font-bold mb-2">Michael Johnson</h3>
+          <p class="text-accent mb-3">CEO & Founder</p>
+          <p class="text-gray-600 text-sm mb-4">20+ years in real estate</p>
+          <div class="flex justify-center gap-3">
+            <a href="#" class="text-gray-400 hover:text-primary transition">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-primary transition">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="card text-center group" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-primary/20 group-hover:border-primary transition">
+          <h3 class="text-xl font-bold mb-2">Sarah Williams</h3>
+          <p class="text-accent mb-3">Head of Operations</p>
+          <p class="text-gray-600 text-sm mb-4">15+ years experience</p>
+          <div class="flex justify-center gap-3">
+            <a href="#" class="text-gray-400 hover:text-primary transition">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-primary transition">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="card text-center group" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-primary/20 group-hover:border-primary transition">
+          <h3 class="text-xl font-bold mb-2">David Chen</h3>
+          <p class="text-accent mb-3">Senior Agent</p>
+          <p class="text-gray-600 text-sm mb-4">12+ years experience</p>
+          <div class="flex justify-center gap-3">
+            <a href="#" class="text-gray-400 hover:text-primary transition">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-primary transition">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="card text-center group" data-aos="fade-up" data-aos-delay="400">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-primary/20 group-hover:border-primary transition">
+          <h3 class="text-xl font-bold mb-2">Emily Rodriguez</h3>
+          <p class="text-accent mb-3">Marketing Director</p>
+          <p class="text-gray-600 text-sm mb-4">10+ years experience</p>
+          <div class="flex justify-center gap-3">
+            <a href="#" class="text-gray-400 hover:text-primary transition">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-primary transition">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Achievements</span>
+        <h2 class="text-4xl font-bold mt-4 mb-6">Our Milestones</h2>
+        <p class="text-gray-600">Celebrating excellence and growth in the real estate industry</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
+        <div class="text-center achievement-counter" data-aos="zoom-in" data-aos-delay="100">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i class="fas fa-trophy text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-primary mb-1" data-target="50">0</h3>
+          <p class="text-gray-600 font-semibold text-sm">Industry Awards</p>
+        </div>
+        
+        <div class="text-center achievement-counter" data-aos="zoom-in" data-aos-delay="150">
+          <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i class="fas fa-users text-accent text-2xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-accent mb-1" data-target="12500">0</h3>
+          <p class="text-gray-600 font-semibold text-sm">Happy Clients</p>
+        </div>
+        
+        <div class="text-center achievement-counter" data-aos="zoom-in" data-aos-delay="200">
+          <div class="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i class="fas fa-home text-green-500 text-2xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-green-500 mb-1" data-target="5800">0</h3>
+          <p class="text-gray-600 font-semibold text-sm">Properties Sold</p>
+        </div>
+        
+        <div class="text-center achievement-counter" data-aos="zoom-in" data-aos-delay="250">
+          <div class="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i class="fas fa-star text-blue-500 text-2xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-blue-500 mb-1" data-target="98">0</h3>
+          <p class="text-gray-600 font-semibold text-sm">Satisfaction Rate %</p>
+        </div>
+        
+        <div class="text-center achievement-counter" data-aos="zoom-in" data-aos-delay="300">
+          <div class="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i class="fas fa-dollar-sign text-purple-500 text-2xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-purple-500 mb-1" data-target="2.8">0</h3>
+          <p class="text-gray-600 font-semibold text-sm">Billion in Sales</p>
+        </div>
+        
+        <div class="text-center achievement-counter" data-aos="zoom-in" data-aos-delay="350">
+          <div class="w-16 h-16 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i class="fas fa-clock text-orange-500 text-2xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-orange-500 mb-1" data-target="15">0</h3>
+          <p class="text-gray-600 font-semibold text-sm">Years Experience</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section class="py-20 bg-gray-50" style="background: var(--hover-bg);">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Recognition</span>
+        <h2 class="text-4xl font-bold mt-4 mb-6">Awards & Certifications</h2>
+        <p class="text-gray-600">Honored to be recognized as industry leaders</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="award-card" data-aos="flip-left" data-aos-delay="100">
+          <div class="text-center">
+            <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <i class="fas fa-award text-white text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Best Real Estate Agency</h3>
+            <p class="text-accent font-semibold mb-2">2024</p>
+            <p class="text-gray-600 text-sm">National Real Estate Association</p>
+          </div>
+        </div>
+        
+        <div class="award-card" data-aos="flip-left" data-aos-delay="200">
+          <div class="text-center">
+            <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <i class="fas fa-medal text-white text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Excellence in Customer Service</h3>
+            <p class="text-accent font-semibold mb-2">2024</p>
+            <p class="text-gray-600 text-sm">Customer Choice Awards</p>
+          </div>
+        </div>
+        
+        <div class="award-card" data-aos="flip-left" data-aos-delay="300">
+          <div class="text-center">
+            <div class="w-24 h-24 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <i class="fas fa-trophy text-white text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Innovation in PropTech</h3>
+            <p class="text-accent font-semibold mb-2">2023</p>
+            <p class="text-gray-600 text-sm">Tech Excellence Forum</p>
+          </div>
+        </div>
+        
+        <div class="award-card" data-aos="flip-left" data-aos-delay="400">
+          <div class="text-center">
+            <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <i class="fas fa-certificate text-white text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">ISO 9001 Certified</h3>
+            <p class="text-accent font-semibold mb-2">2023</p>
+            <p class="text-gray-600 text-sm">International Standards Organization</p>
+          </div>
+        </div>
+        
+        <div class="award-card" data-aos="flip-left" data-aos-delay="500">
+          <div class="text-center">
+            <div class="w-24 h-24 bg-gradient-to-br from-red-400 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <i class="fas fa-star text-white text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Top Rated Platform</h3>
+            <p class="text-accent font-semibold mb-2">2022-2024</p>
+            <p class="text-gray-600 text-sm">Trustpilot 5-Star Rating</p>
+          </div>
+        </div>
+        
+        <div class="award-card" data-aos="flip-left" data-aos-delay="600">
+          <div class="text-center">
+            <div class="w-24 h-24 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <i class="fas fa-handshake text-white text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Most Trusted Brand</h3>
+            <p class="text-accent font-semibold mb-2">2023</p>
+            <p class="text-gray-600 text-sm">Consumer Trust Awards</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Our Values</span>
+        <h2 class="text-4xl font-bold mt-4 mb-6">What Drives Us</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Integrity</h3>
+          <p>We maintain the highest standards of honesty and transparency in all our dealings</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-lightbulb"></i>
+          <h3>Innovation</h3>
+          <p>Constantly evolving with cutting-edge technology to serve you better</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-heart"></i>
+          <h3>Customer First</h3>
+          <p>Your satisfaction and success are our top priorities</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <i class="fas fa-users"></i>
+          <h3>Collaboration</h3>
+          <p>Working together with clients and partners for mutual success</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+          <i class="fas fa-certificate"></i>
+          <h3>Excellence</h3>
+          <p>Delivering exceptional quality in every aspect of our service</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+          <i class="fas fa-handshake"></i>
+          <h3>Trust</h3>
+          <p>Building lasting relationships through reliability and commitment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container mx-auto px-4">
+      <div class="text-center" data-aos="zoom-in">
+        <h2 class="text-4xl font-bold mb-6">Ready to Find Your Dream Home?</h2>
+        <p class="text-xl mb-8 opacity-90">Join thousands of satisfied clients who found their perfect property with us</p>
+        <div class="flex gap-4 justify-center flex-wrap">
+          <a href="property-details.html" class="btn btn-glass">Browse Properties</a>
+          <a href="contact.html" class="btn btn-primary bg-white text-primary hover:bg-gray-100">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <!-- Enhanced Modern Footer -->
+  <footer class="footer-modern">
+    <div class="container mx-auto px-4">
+      <!-- Newsletter Section -->
+      <div class="footer-newsletter" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto text-center">
+          <h3 class="text-2xl font-bold mb-3">Stay Updated with Property News</h3>
+          <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market insights, and exclusive offers.</p>
+          <form class="flex gap-3 max-w-md mx-auto" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" placeholder="Enter your email" class="form-control flex-1" required>
+            <button type="submit" class="btn btn-primary whitespace-nowrap">
+              <i class="fas fa-paper-plane"></i>
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Main Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 py-4">
+        <div class="lg:col-span-2 footer-brand-section">
+          <a href="index.html" class="logo-text text-3xl mb-4 block">EstateAlpha</a>
+          <p class="text-gray-400 mb-6 leading-relaxed">
+            Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their dream properties through innovative technology and exceptional service. Excellence in real estate since 2010.
+          </p>
+          <div class="flex gap-3">
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-icon-footer">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="property-details.html" class="footer-link"><i class="fas fa-chevron-right"></i> Properties</a></li>
+            <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            <li><a href="faq.html" class="footer-link"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+            <li><a href="login.html" class="footer-link"><i class="fas fa-chevron-right"></i> Login</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Apartments</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Houses</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Villas & Estates</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Commercial</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Land & Plots</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Contact Us</h4>
+          <ul class="footer-contact">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>123 Real Estate Avenue<br>Suite 100, New York<br>NY 10001, USA</span>
+            </li>
+            <li>
+              <i class="fas fa-phone-alt"></i>
+              <span>+1 (555) 123-4567<br>+1 (555) 987-6543</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@estatealpha.com<br>support@estatealpha.com</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="footer-legal-section">
+          <h4 class="footer-heading">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Trust Badges -->
+      <div class="footer-trust-badges" data-aos="fade-up">
+        <div class="flex flex-wrap justify-center items-center gap-8">
+          <div class="trust-badge">
+            <i class="fas fa-shield-alt text-3xl mb-2"></i>
+            <p class="font-semibold">Secure Transactions</p>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-award text-3xl mb-2"></i>
+            <p class="font-semibold">Award Winning</p>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-users text-3xl mb-2"></i>
+            <p class="font-semibold">10K+ Happy Clients</p>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-headset text-3xl mb-2"></i>
+            <p class="font-semibold">24/7 Support</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p class="text-gray-400 text-sm text-center">
+          &copy; 2025 EstateAlpha. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/rtl-toggle.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+    
+    // Mobile menu toggle - Fixed with proper event handling
+    function initMobileMenu() {
+      const button = document.querySelector('.mobile-menu-button');
+      const menu = document.getElementById('mobileMenu');
+      
+      if (!button || !menu) return;
+      
+      let isTogglingMenu = false;
+      
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        isTogglingMenu = true;
+        menu.classList.toggle('active');
+        setTimeout(function() { isTogglingMenu = false; }, 100);
+      });
+      
+      const links = menu.querySelectorAll('a');
+      links.forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.remove('active');
+        });
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (isTogglingMenu) return;
+        if (menu.classList.contains('active')) {
+          if (!menu.contains(e.target) && !button.contains(e.target)) {
+            menu.classList.remove('active');
+          }
+        }
+      });
+      
+      menu.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+    
+    initMobileMenu();
+    
+    // Achievement Counter Animation
+    function animateCounter(element) {
+      const target = parseFloat(element.getAttribute('data-target'));
+      const isDecimal = target % 1 !== 0;
+      const duration = 2000;
+      const increment = target / (duration / 16);
+      let current = 0;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = isDecimal ? target.toFixed(1) : target.toLocaleString();
+          clearInterval(timer);
+        } else {
+          element.textContent = isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString();
+        }
+      }, 16);
+    }
+    
+    // Trigger counters on scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+    
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target.querySelector('h3[data-target]');
+          if (counter && counter.textContent === '0') {
+            animateCounter(counter);
+          }
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.achievement-counter').forEach(counter => {
+      counterObserver.observe(counter);
+    });
+  </script>
+</body>
+</html>
