@@ -84,8 +84,16 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="pt-32 pb-20 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-96 h-96 bg-accent opacity-10 rounded-full -mr-48 -mt-48"></div>
+  <section class="pt-24 pb-8 md:pt-28 md:pb-12 text-white relative overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80" 
+           alt="Contact Us" 
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/90 to-secondary/85"></div>
+    </div>
+    
+    <div class="absolute top-0 right-0 w-96 h-96 bg-accent opacity-10 rounded-full -mr-48 -mt-48 z-[1]"></div>
     <div class="container mx-auto px-4 relative z-10">
       <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
         <h1 class="text-5xl md:text-6xl font-bold mb-6">Get In Touch</h1>
@@ -95,7 +103,7 @@
   </section>
 
   <!-- Contact Cards -->
-  <section class="py-20">
+  <section class="py-8 md:py-12">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-3 gap-8 mb-16">
         <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
@@ -251,7 +259,7 @@
   <footer class="footer-modern">
     <div class="container mx-auto px-4">
       <!-- Newsletter Section -->
-      <div class="footer-newsletter" data-aos="fade-up">
+      <div class="footer-newsletter hidden md:block" data-aos="fade-up">
         <div class="max-w-4xl mx-auto text-center">
           <h3 class="text-2xl font-bold mb-3">Stay Updated with Property News</h3>
           <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market insights, and exclusive offers.</p>
@@ -266,13 +274,13 @@
       </div>
       
       <!-- Main Footer Content -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 py-4">
-        <div class="lg:col-span-2 footer-brand-section">
-          <a href="index.html" class="logo-text text-3xl mb-4 block">EstateAlpha</a>
-          <p class="text-gray-400 mb-6 leading-relaxed">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 md:gap-6 py-2 md:py-4">
+        <div class="lg:col-span-2">
+          <a href="index.html" class="logo-text text-3xl mb-2 md:mb-4 block">EstateAlpha</a>
+          <p class="text-gray-400 mb-3 md:mb-6 leading-relaxed hidden md:block">
             Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their dream properties through innovative technology and exceptional service. Excellence in real estate since 2010.
           </p>
-          <div class="flex gap-3">
+          <div class="flex gap-3 hidden md:flex">
             <a href="#" class="social-icon-footer">
               <i class="fab fa-facebook-f"></i>
             </a>
@@ -318,20 +326,20 @@
           <ul class="footer-contact">
             <li>
               <i class="fas fa-map-marker-alt"></i>
-              <span>123 Real Estate Avenue<br>Suite 100, New York<br>NY 10001, USA</span>
+              <span>123 Real Estate Ave<br>New York, NY 10001</span>
             </li>
             <li>
               <i class="fas fa-phone-alt"></i>
-              <span>+1 (555) 123-4567<br>+1 (555) 987-6543</span>
+              <span>+1 (555) 123-4567</span>
             </li>
             <li>
               <i class="fas fa-envelope"></i>
-              <span>info@estatealpha.com<br>support@estatealpha.com</span>
+              <span>info@estatealpha.com</span>
             </li>
           </ul>
         </div>
         
-        <div class="footer-legal-section">
+        <div>
           <h4 class="footer-heading">Legal</h4>
           <ul class="footer-links">
             <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
@@ -366,7 +374,7 @@
       
       <!-- Bottom Bar -->
       <div class="footer-bottom">
-        <p class="text-gray-400 text-sm text-center">
+        <p class="text-gray-400 text-center">
           &copy; 2025 EstateAlpha. All rights reserved.
         </p>
       </div>
