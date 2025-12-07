@@ -466,7 +466,7 @@
   <footer class="footer-modern">
     <div class="container mx-auto px-4">
       <!-- Newsletter Section -->
-      <div class="footer-newsletter" data-aos="fade-up">
+      <div class="footer-newsletter hidden md:block" data-aos="fade-up">
         <div class="max-w-4xl mx-auto text-center">
           <h3 class="text-2xl font-bold mb-3">Stay Updated with Property News</h3>
           <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market insights, and exclusive offers.</p>
@@ -481,13 +481,13 @@
       </div>
       
       <!-- Main Footer Content -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 py-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 md:gap-6 py-2 md:py-4">
         <div class="lg:col-span-2">
-          <a href="index.html" class="logo-text text-3xl mb-4 block">EstateAlpha</a>
-          <p class="text-gray-400 mb-6 leading-relaxed">
+          <a href="index.html" class="logo-text text-3xl mb-2 md:mb-4 block">EstateAlpha</a>
+          <p class="text-gray-400 mb-3 md:mb-6 leading-relaxed hidden md:block">
             Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their dream properties through innovative technology and exceptional service. Excellence in real estate since 2010.
           </p>
-          <div class="flex gap-3">
+          <div class="flex gap-3 hidden md:flex">
             <a href="#" class="social-icon-footer">
               <i class="fab fa-facebook-f"></i>
             </a>
@@ -533,16 +533,26 @@
           <ul class="footer-contact">
             <li>
               <i class="fas fa-map-marker-alt"></i>
-              <span>123 Real Estate Avenue<br>Suite 100, New York<br>NY 10001, USA</span>
+              <span>123 Real Estate Ave<br>New York, NY 10001</span>
             </li>
             <li>
               <i class="fas fa-phone-alt"></i>
-              <span>+1 (555) 123-4567<br>+1 (555) 987-6543</span>
+              <span>+1 (555) 123-4567</span>
             </li>
             <li>
               <i class="fas fa-envelope"></i>
-              <span>info@estatealpha.com<br>support@estatealpha.com</span>
+              <span>info@estatealpha.com</span>
             </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Sitemap</a></li>
           </ul>
         </div>
       </div>
@@ -571,20 +581,9 @@
       
       <!-- Bottom Bar -->
       <div class="footer-bottom">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p class="text-gray-400 text-sm">
-            &copy; 2025 EstateAlpha. All rights reserved.
-          </p>
-          <div class="flex flex-wrap gap-4 text-sm">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <span class="text-gray-600">•</span>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <span class="text-gray-600">•</span>
-            <a href="#" class="footer-link">Cookie Policy</a>
-            <span class="text-gray-600">•</span>
-            <a href="#" class="footer-link">Sitemap</a>
-          </div>
-        </div>
+        <p class="text-gray-400 text-center">
+          &copy; 2025 EstateAlpha. All rights reserved.
+        </p>
       </div>
     </div>
   </footer>
