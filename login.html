@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - EstateAlpha</title>
-  
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
-  
+
   <style>
     .auth-container {
-      min-height: 100vh;
+      min-height: calc(100vh - 80px);
+      margin-top: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -21,47 +24,48 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .auth-container::before {
       content: '';
       position: absolute;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
       border-radius: 50%;
       top: -250px;
       right: -250px;
       animation: float 6s ease-in-out infinite;
     }
-    
+
     .auth-container::after {
       content: '';
       position: absolute;
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(96,165,250,0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
       border-radius: 50%;
       bottom: -200px;
       left: -200px;
       animation: float 8s ease-in-out infinite reverse;
     }
-    
+
     .auth-box {
       position: relative;
       width: 100%;
       max-width: 950px;
-      height: 600px;
+      min-height: 600px;
+      height: auto;
       background: white;
       border-radius: 24px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
       overflow: hidden;
       z-index: 10;
     }
-    
+
     [data-theme="dark"] .auth-box {
       background: #1E293B;
     }
-    
+
     .auth-forms {
       position: relative;
       width: 100%;
@@ -69,7 +73,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
-    
+
     .form-section {
       padding: 3rem;
       display: flex;
@@ -77,7 +81,7 @@
       justify-content: center;
       transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
-    
+
     .auth-overlay {
       position: absolute;
       top: 0;
@@ -95,29 +99,29 @@
       color: white;
       text-align: center;
     }
-    
+
     .auth-container.register-mode .auth-overlay {
       transform: translateX(-100%);
     }
-    
+
     .form-section.register-form {
       opacity: 0;
       pointer-events: none;
       transform: translateX(50px);
     }
-    
+
     .auth-container.register-mode .form-section.login-form {
       opacity: 0;
       pointer-events: none;
       transform: translateX(-50px);
     }
-    
+
     .auth-container.register-mode .form-section.register-form {
       opacity: 1;
       pointer-events: all;
       transform: translateX(0);
     }
-    
+
     .social-btn {
       display: flex;
       align-items: center;
@@ -130,35 +134,35 @@
       cursor: pointer;
       font-weight: 500;
     }
-    
+
     .social-btn:hover {
       border-color: var(--accent-color);
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-    
+
     @media (max-width: 768px) {
       .auth-box {
         height: auto;
         min-height: 600px;
       }
-      
+
       .auth-forms {
         grid-template-columns: 1fr;
       }
-      
+
       .auth-overlay {
         display: none;
       }
-      
+
       .form-section.register-form {
         display: none;
       }
-      
+
       .auth-container.register-mode .form-section.login-form {
         display: none;
       }
-      
+
       .auth-container.register-mode .form-section.register-form {
         display: flex;
         opacity: 1;
@@ -166,36 +170,147 @@
         transform: translateX(0);
       }
     }
+
+    /* RTL Support */
+    [dir="rtl"] .auth-overlay {
+      left: 0;
+      right: auto;
+    }
+
+    [dir="rtl"] .auth-container.register-mode .auth-overlay {
+      transform: translateX(100%);
+    }
+
+    [dir="rtl"] .form-section.register-form {
+      transform: translateX(-50px);
+    }
+
+    [dir="rtl"] .auth-container.register-mode .form-section.login-form {
+      transform: translateX(50px);
+    }
   </style>
 </head>
+
 <body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="index.html" class="logo-text text-3xl">
+          EstateAlpha
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center gap-8">
+          <div class="dropdown">
+            <button class="nav-link flex items-center gap-2">
+              Home <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="index.html">Modern View</a>
+              <a href="index2.html">Classic View</a>
+            </div>
+          </div>
+
+          <a href="about.html" class="nav-link">About</a>
+          <a href="property-details.html" class="nav-link">Properties</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+
+          <div class="dropdown">
+            <button class="nav-link flex items-center gap-2">
+              Dashboard <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="user-dashboard.html">User Panel</a>
+              <a href="admin-dashboard.html">Admin Panel</a>
+            </div>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+            <div class="theme-toggle-slider">
+              <i class="fas fa-sun"></i>
+            </div>
+          </button>
+
+          <!-- RTL Toggle -->
+          <button id="rtlToggle" class="rtl-toggle" aria-label="Toggle RTL">
+            <i class="fas fa-globe"></i>
+          </button>
+
+          <a href="login.html" class="btn btn-primary">
+            Login
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden mobile-menu-button text-2xl">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu lg:hidden" style="position: fixed; display: block;">
+      <div class="container mx-auto px-4 py-4">
+        <a href="index.html" class="block py-2 nav-link">Home - Modern</a>
+        <a href="index2.html" class="block py-2 nav-link">Home - Classic</a>
+        <a href="about.html" class="block py-2 nav-link">About</a>
+        <a href="property-details.html" class="block py-2 nav-link">Properties</a>
+        <a href="faq.html" class="block py-2 nav-link">FAQ</a>
+        <a href="contact.html" class="block py-2 nav-link">Contact</a>
+        <a href="user-dashboard.html" class="block py-2 nav-link">User Dashboard</a>
+        <a href="admin-dashboard.html" class="block py-2 nav-link">Admin Dashboard</a>
+
+        <div class="flex items-center gap-4 mt-4">
+          <button id="themeToggleMobile" class="theme-toggle">
+            <div class="theme-toggle-slider">
+              <i class="fas fa-sun"></i>
+            </div>
+          </button>
+          <button id="rtlToggleMobile" class="rtl-toggle">
+            <i class="fas fa-globe"></i>
+          </button>
+          <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
   <div class="auth-container" id="authContainer">
     <div class="auth-box">
       <div class="auth-forms">
         <!-- Login Form -->
         <div class="form-section login-form">
           <div class="mb-8">
-            <a href="index.html" class="logo-text text-3xl">EstateAlpha</a>
-            <h2 class="text-3xl font-bold mt-4 mb-2">Welcome Back!</h2>
+            <div class="flex justify-between items-center mb-4">
+              <a href="index.html" class="logo-text text-3xl">EstateAlpha</a>
+              <a href="index.html" class="text-sm text-gray-500 hover:text-primary transition-colors">
+                <i class="fas fa-arrow-left mr-1"></i> Back to Home
+              </a>
+            </div>
+            <h2 class="text-3xl font-bold mb-2">Welcome Back!</h2>
             <p class="text-gray-600">Sign in to access your account</p>
           </div>
-          
+
           <form onsubmit="handleLogin(event)">
             <div class="mb-4">
               <label class="form-label text-sm">Email Address</label>
               <input type="email" class="form-control" placeholder="your@email.com" required>
             </div>
-            
+
             <div class="mb-4">
               <label class="form-label text-sm">Password</label>
               <div class="relative">
                 <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
-                <button type="button" onclick="togglePassword('loginPassword')" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+                <button type="button" onclick="togglePassword('loginPassword')"
+                  class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
                   <i class="fas fa-eye"></i>
                 </button>
               </div>
             </div>
-            
+
             <div class="flex items-center justify-between mb-6">
               <label class="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" class="rounded">
@@ -203,12 +318,12 @@
               </label>
               <a href="#" class="text-sm text-blue-600 hover:text-yellow-500">Forgot Password?</a>
             </div>
-            
+
             <button type="submit" class="btn btn-primary w-full mb-4">
               <i class="fas fa-sign-in-alt"></i>
               Sign In
             </button>
-            
+
             <div class="relative my-6">
               <div class="absolute inset-0 flex items-center">
                 <div class="w-full border-t border-gray-300"></div>
@@ -217,7 +332,7 @@
                 <span class="px-4 bg-white text-gray-500" style="background: inherit;">Or continue with</span>
               </div>
             </div>
-            
+
             <div class="grid grid-cols-2 gap-4">
               <button type="button" class="social-btn">
                 <i class="fab fa-google text-red-500"></i>
@@ -230,15 +345,20 @@
             </div>
           </form>
         </div>
-        
+
         <!-- Register Form -->
         <div class="form-section register-form">
           <div class="mb-8">
-            <a href="index.html" class="logo-text text-3xl">EstateAlpha</a>
-            <h2 class="text-3xl font-bold mt-4 mb-2">Create Account</h2>
+            <div class="flex justify-between items-center mb-4">
+              <a href="index.html" class="logo-text text-3xl">EstateAlpha</a>
+              <a href="index.html" class="text-sm text-gray-500 hover:text-primary transition-colors">
+                <i class="fas fa-arrow-left mr-1"></i> Back to Home
+              </a>
+            </div>
+            <h2 class="text-3xl font-bold mb-2">Create Account</h2>
             <p class="text-gray-600">Join us and start your journey</p>
           </div>
-          
+
           <form onsubmit="handleRegister(event)">
             <div class="grid grid-cols-2 gap-4 mb-4">
               <div>
@@ -250,44 +370,46 @@
                 <input type="text" class="form-control" placeholder="Doe" required>
               </div>
             </div>
-            
+
             <div class="mb-4">
               <label class="form-label text-sm">Email Address</label>
               <input type="email" class="form-control" placeholder="your@email.com" required>
             </div>
-            
+
             <div class="mb-4">
               <label class="form-label text-sm">Password</label>
               <div class="relative">
                 <input type="password" id="registerPassword" class="form-control" placeholder="••••••••" required>
-                <button type="button" onclick="togglePassword('registerPassword')" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+                <button type="button" onclick="togglePassword('registerPassword')"
+                  class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
                   <i class="fas fa-eye"></i>
                 </button>
               </div>
             </div>
-            
+
             <div class="mb-4">
               <label class="form-label text-sm">Confirm Password</label>
               <div class="relative">
                 <input type="password" id="confirmPassword" class="form-control" placeholder="••••••••" required>
-                <button type="button" onclick="togglePassword('confirmPassword')" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+                <button type="button" onclick="togglePassword('confirmPassword')"
+                  class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
                   <i class="fas fa-eye"></i>
                 </button>
               </div>
             </div>
-            
+
             <div class="mb-6">
               <label class="flex items-start gap-2 cursor-pointer">
                 <input type="checkbox" class="rounded mt-1" required>
                 <span class="text-sm text-gray-600">I agree to the Terms of Service and Privacy Policy</span>
               </label>
             </div>
-            
+
             <button type="submit" class="btn btn-primary w-full mb-4">
               <i class="fas fa-user-plus"></i>
               Create Account
             </button>
-            
+
             <div class="relative my-6">
               <div class="absolute inset-0 flex items-center">
                 <div class="w-full border-t border-gray-300"></div>
@@ -296,7 +418,7 @@
                 <span class="px-4 bg-white text-gray-500" style="background: inherit;">Or continue with</span>
               </div>
             </div>
-            
+
             <div class="grid grid-cols-2 gap-4">
               <button type="button" class="social-btn">
                 <i class="fab fa-google text-red-500"></i>
@@ -309,7 +431,7 @@
             </div>
           </form>
         </div>
-        
+
         <!-- Overlay Panel -->
         <div class="auth-overlay">
           <div id="overlayContent">
@@ -322,7 +444,7 @@
                 Sign Up
               </button>
             </div>
-            
+
             <div class="overlay-panel-right hidden">
               <h2 class="text-4xl font-bold mb-4">Welcome Back!</h2>
               <p class="mb-8 text-white/90">
@@ -346,17 +468,17 @@
       document.querySelector('.overlay-panel-left').classList.add('hidden');
       document.querySelector('.overlay-panel-right').classList.remove('hidden');
     }
-    
+
     function switchToLogin() {
       document.getElementById('authContainer').classList.remove('register-mode');
       document.querySelector('.overlay-panel-right').classList.add('hidden');
       document.querySelector('.overlay-panel-left').classList.remove('hidden');
     }
-    
+
     function togglePassword(inputId) {
       const input = document.getElementById(inputId);
       const icon = input.nextElementSibling.querySelector('i');
-      
+
       if (input.type === 'password') {
         input.type = 'text';
         icon.classList.remove('fa-eye');
@@ -367,13 +489,13 @@
         icon.classList.add('fa-eye');
       }
     }
-    
+
     function handleLogin(event) {
       event.preventDefault();
       // Redirect to user dashboard (no validation needed as per requirement)
       window.location.href = 'user-dashboard.html';
     }
-    
+
     function handleRegister(event) {
       event.preventDefault();
       // Redirect to user dashboard (no validation needed as per requirement)
@@ -381,4 +503,5 @@
     }
   </script>
 </body>
+
 </html>

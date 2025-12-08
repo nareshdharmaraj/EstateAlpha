@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EstateAlpha - Discover Your Perfect Property</title>
-  
+
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
-  
+
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="navbar">
@@ -29,7 +32,7 @@
         <a href="index.html" class="logo-text text-3xl">
           EstateAlpha
         </a>
-        
+
         <!-- Desktop Menu -->
         <div class="hidden lg:flex items-center gap-8">
           <div class="dropdown">
@@ -41,12 +44,12 @@
               <a href="index2.html">Classic View</a>
             </div>
           </div>
-          
+
           <a href="about.html" class="nav-link">About</a>
           <a href="property-details.html" class="nav-link">Properties</a>
           <a href="faq.html" class="nav-link">FAQ</a>
           <a href="contact.html" class="nav-link">Contact</a>
-          
+
           <div class="dropdown">
             <button class="nav-link flex items-center gap-2">
               Dashboard <i class="fas fa-chevron-down text-xs"></i>
@@ -56,31 +59,31 @@
               <a href="admin-dashboard.html">Admin Panel</a>
             </div>
           </div>
-          
+
           <!-- Theme Toggle -->
           <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
             <div class="theme-toggle-slider">
               <i class="fas fa-sun"></i>
             </div>
           </button>
-          
+
           <!-- RTL Toggle -->
           <button id="rtlToggle" class="rtl-toggle" aria-label="Toggle RTL">
             <i class="fas fa-globe"></i>
           </button>
-          
+
           <a href="login.html" class="btn btn-primary">
             Login
           </a>
         </div>
-        
+
         <!-- Mobile Menu Button -->
         <button class="lg:hidden mobile-menu-button text-2xl">
           <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
-    
+
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="mobile-menu lg:hidden" style="position: fixed; display: block;">
       <div class="container mx-auto px-4 py-4">
@@ -92,7 +95,7 @@
         <a href="contact.html" class="block py-2 nav-link">Contact</a>
         <a href="user-dashboard.html" class="block py-2 nav-link">User Dashboard</a>
         <a href="admin-dashboard.html" class="block py-2 nav-link">Admin Dashboard</a>
-        
+
         <div class="flex items-center gap-4 mt-4">
           <button id="themeToggleMobile" class="theme-toggle">
             <div class="theme-toggle-slider">
@@ -109,13 +112,20 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative flex items-center overflow-hidden" style="margin-top: 80px; min-height: calc(100vh - 80px); padding-top: 60px; padding-bottom: 60px; z-index: 1;">
+  <section class="relative flex items-center overflow-hidden"
+    style="margin-top: 80px; min-height: calc(100vh - 80px); padding-top: 60px; padding-bottom: 60px; z-index: 1;">
     <!-- Animated Background -->
     <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-700 to-purple-900">
       <div class="absolute inset-0 opacity-20">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-        <div class="absolute top-40 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-20 left-1/3 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+        <div
+          class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob">
+        </div>
+        <div
+          class="absolute top-40 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000">
+        </div>
+        <div
+          class="absolute bottom-20 left-1/3 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000">
+        </div>
       </div>
     </div>
 
@@ -124,9 +134,11 @@
         <!-- Left: Content -->
         <div class="text-white" data-aos="fade-right">
           <!-- Premium Badge -->
-          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full mb-4 lg:mb-6 border border-white/20">
+          <div
+            class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full mb-4 lg:mb-6 border border-white/20">
             <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
             </span>
             <span class="text-sm font-semibold">AI-Powered Property Search</span>
@@ -143,16 +155,19 @@
 
           <!-- Description -->
           <p class="text-base lg:text-lg text-white/80 mb-6 lg:mb-8 leading-relaxed max-w-xl">
-            Experience the future of real estate with our intelligent platform. Discover over 10,000+ verified properties with virtual tours, instant valuations, and smart recommendations.
+            Experience the future of real estate with our intelligent platform. Discover over 10,000+ verified
+            properties with virtual tours, instant valuations, and smart recommendations.
           </p>
 
           <!-- CTA Buttons -->
           <div class="flex flex-wrap gap-3 lg:gap-4 mb-6 lg:mb-8">
-            <button class="bg-white text-blue-900 px-6 lg:px-8 py-3 lg:py-4 rounded-xl font-semibold text-base lg:text-lg hover:bg-blue-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2">
+            <button
+              class="bg-white text-blue-900 px-6 lg:px-8 py-3 lg:py-4 rounded-xl font-semibold text-base lg:text-lg hover:bg-blue-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2">
               <i class="fas fa-rocket"></i>
               Start Exploring
             </button>
-            <button class="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-xl font-semibold text-base lg:text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
+            <button
+              class="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-xl font-semibold text-base lg:text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
               <i class="fas fa-play-circle"></i>
               Watch Demo
             </button>
@@ -180,13 +195,16 @@
           <div class="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-5 lg:p-6 border border-white/20">
             <!-- Tabs -->
             <div class="flex gap-2 mb-4 bg-gray-100 p-1.5 rounded-xl">
-              <button class="flex-1 px-3 py-2.5 rounded-lg font-semibold text-sm bg-white shadow-sm text-blue-900 transition-all">
+              <button
+                class="flex-1 px-3 py-2.5 rounded-lg font-semibold text-sm bg-white shadow-sm text-blue-900 transition-all">
                 <i class="fas fa-home mr-2"></i>Buy
               </button>
-              <button class="flex-1 px-3 py-2.5 rounded-lg font-semibold text-sm text-gray-600 hover:text-blue-900 transition-all">
+              <button
+                class="flex-1 px-3 py-2.5 rounded-lg font-semibold text-sm text-gray-600 hover:text-blue-900 transition-all">
                 <i class="fas fa-key mr-2"></i>Rent
               </button>
-              <button class="flex-1 px-3 py-2.5 rounded-lg font-semibold text-sm text-gray-600 hover:text-blue-900 transition-all">
+              <button
+                class="flex-1 px-3 py-2.5 rounded-lg font-semibold text-sm text-gray-600 hover:text-blue-900 transition-all">
                 <i class="fas fa-chart-line mr-2"></i>Sell
               </button>
             </div>
@@ -198,8 +216,8 @@
                 <label class="block text-sm font-semibold text-gray-700 mb-1.5">
                   <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>Location
                 </label>
-                <input type="text" 
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-gray-900" 
+                <input type="text"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-gray-900"
                   placeholder="Enter city, neighborhood or ZIP code">
               </div>
 
@@ -209,7 +227,8 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1.5">
                     <i class="fas fa-building text-blue-600 mr-2"></i>Type
                   </label>
-                  <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-gray-900">
+                  <select
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-gray-900">
                     <option>All Types</option>
                     <option>House</option>
                     <option>Apartment</option>
@@ -222,7 +241,8 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1.5">
                     <i class="fas fa-bed text-blue-600 mr-2"></i>Bedrooms
                   </label>
-                  <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-gray-900">
+                  <select
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-gray-900">
                     <option>Any</option>
                     <option>1 Bed</option>
                     <option>2 Beds</option>
@@ -237,7 +257,8 @@
                 <label class="block text-sm font-semibold text-gray-700 mb-1.5">
                   <i class="fas fa-dollar-sign text-blue-600 mr-2"></i>Price Range
                 </label>
-                <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-gray-900">
+                <select
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-gray-900">
                   <option>Any Budget</option>
                   <option>$0 - $200K</option>
                   <option>$200K - $400K</option>
@@ -257,7 +278,8 @@
               </div>
 
               <!-- Search Button -->
-              <button class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3.5 rounded-xl font-bold text-base lg:text-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 group">
+              <button
+                class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3.5 rounded-xl font-bold text-base lg:text-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 group">
                 <i class="fas fa-search group-hover:scale-110 transition-transform"></i>
                 Search Properties
                 <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
@@ -268,9 +290,15 @@
             <div class="mt-4 pt-4 border-t border-gray-200">
               <p class="text-xs text-gray-500 mb-2">Popular Searches:</p>
               <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer transition-colors">Downtown Apartments</span>
-                <span class="px-3 py-1.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer transition-colors">Beach Houses</span>
-                <span class="px-3 py-1.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer transition-colors">Luxury Villas</span>
+                <span
+                  class="px-3 py-1.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer transition-colors">Downtown
+                  Apartments</span>
+                <span
+                  class="px-3 py-1.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer transition-colors">Beach
+                  Houses</span>
+                <span
+                  class="px-3 py-1.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer transition-colors">Luxury
+                  Villas</span>
               </div>
             </div>
           </div>
@@ -319,12 +347,13 @@
           Handpicked luxury properties from our exclusive collection
         </p>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Property 1 -->
         <div class="property-card" data-aos="fade-up" data-aos-delay="100">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Modern Villa" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Modern Villa"
+              class="w-full h-64 object-cover">
             <span class="property-badge">Featured</span>
           </div>
           <div class="p-6">
@@ -356,7 +385,8 @@
         <!-- Property 2 -->
         <div class="property-card" data-aos="fade-up" data-aos-delay="200">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Penthouse" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Penthouse"
+              class="w-full h-64 object-cover">
             <span class="property-badge">New</span>
           </div>
           <div class="p-6">
@@ -388,7 +418,8 @@
         <!-- Property 3 -->
         <div class="property-card" data-aos="fade-up" data-aos-delay="300">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Beach House" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Beach House"
+              class="w-full h-64 object-cover">
             <span class="property-badge">Hot</span>
           </div>
           <div class="p-6">
@@ -420,7 +451,8 @@
         <!-- Property 4 -->
         <div class="property-card" data-aos="fade-up" data-aos-delay="100">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Modern Apartment" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Modern Apartment"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-4">
@@ -451,7 +483,8 @@
         <!-- Property 5 -->
         <div class="property-card" data-aos="fade-up" data-aos-delay="200">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="Country Estate" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="Country Estate"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-4">
@@ -482,7 +515,8 @@
         <!-- Property 6 -->
         <div class="property-card" data-aos="fade-up" data-aos-delay="300">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="Urban Loft" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="Urban Loft"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-4">
@@ -510,7 +544,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="text-center mt-12" data-aos="fade-up">
         <a href="property-details.html" class="btn btn-primary btn-lg">
           View All Properties
@@ -529,7 +563,7 @@
           Experience the difference with our premium real estate services
         </p>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
           <div class="feature-icon mx-auto">
@@ -540,7 +574,7 @@
             All properties are thoroughly verified and authenticated for your peace of mind
           </p>
         </div>
-        
+
         <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
           <div class="feature-icon mx-auto">
             <i class="fas fa-users"></i>
@@ -550,7 +584,7 @@
             Work with certified professionals who know the market inside and out
           </p>
         </div>
-        
+
         <div class="card text-center" data-aos="fade-up" data-aos-delay="300">
           <div class="feature-icon mx-auto">
             <i class="fas fa-handshake"></i>
@@ -560,7 +594,7 @@
             Get access to exclusive properties and competitive pricing
           </p>
         </div>
-        
+
         <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
           <div class="feature-icon mx-auto">
             <i class="fas fa-mobile-alt"></i>
@@ -570,7 +604,7 @@
             Round-the-clock assistance for all your real estate needs
           </p>
         </div>
-        
+
         <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
           <div class="feature-icon mx-auto">
             <i class="fas fa-chart-line"></i>
@@ -580,7 +614,7 @@
             Stay informed with real-time market trends and analytics
           </p>
         </div>
-        
+
         <div class="card text-center" data-aos="fade-up" data-aos-delay="300">
           <div class="feature-icon mx-auto">
             <i class="fas fa-lock"></i>
@@ -620,7 +654,8 @@
       <div class="footer-newsletter hidden md:block" data-aos="fade-up">
         <div class="max-w-4xl mx-auto text-center">
           <h3 class="text-2xl font-bold mb-3">Stay Updated with Property News</h3>
-          <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market insights, and exclusive offers.</p>
+          <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market
+            insights, and exclusive offers.</p>
           <form class="flex gap-3 max-w-md mx-auto" onsubmit="handleNewsletterSubmit(event)">
             <input type="email" placeholder="Enter your email" class="form-control flex-1" required>
             <button type="submit" class="btn btn-primary whitespace-nowrap">
@@ -630,13 +665,15 @@
           </form>
         </div>
       </div>
-      
+
       <!-- Main Footer Content -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 md:gap-6 py-2 md:py-4">
         <div class="lg:col-span-2">
           <a href="index.html" class="logo-text text-3xl mb-2 md:mb-4 block">EstateAlpha</a>
           <p class="text-gray-400 mb-3 md:mb-6 leading-relaxed hidden md:block">
-            Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their dream properties through innovative technology and exceptional service. Excellence in real estate since 2010.
+            Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their
+            dream properties through innovative technology and exceptional service. Excellence in real estate since
+            2010.
           </p>
           <div class="flex gap-3 hidden md:flex">
             <a href="#" class="social-icon-footer">
@@ -656,18 +693,19 @@
             </a>
           </div>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Quick Links</h4>
           <ul class="footer-links">
             <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> About Us</a></li>
-            <li><a href="property-details.html" class="footer-link"><i class="fas fa-chevron-right"></i> Properties</a></li>
+            <li><a href="property-details.html" class="footer-link"><i class="fas fa-chevron-right"></i> Properties</a>
+            </li>
             <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact</a></li>
             <li><a href="faq.html" class="footer-link"><i class="fas fa-chevron-right"></i> FAQ</a></li>
             <li><a href="login.html" class="footer-link"><i class="fas fa-chevron-right"></i> Login</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Property Types</h4>
           <ul class="footer-links">
@@ -678,7 +716,7 @@
             <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Land & Plots</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Contact Us</h4>
           <ul class="footer-contact">
@@ -696,7 +734,7 @@
             </li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Legal</h4>
           <ul class="footer-links">
@@ -707,7 +745,7 @@
           </ul>
         </div>
       </div>
-      
+
       <!-- Trust Badges -->
       <div class="footer-trust-badges" data-aos="fade-up">
         <div class="flex flex-wrap justify-center items-center gap-8">
@@ -729,7 +767,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Bottom Bar -->
       <div class="footer-bottom">
         <p class="text-gray-400 text-center">
@@ -750,76 +788,12 @@
       once: true,
       offset: 100
     });
-    
-    // Mobile menu toggle - Fixed with proper event handling
-    function initMobileMenu() {
-      const button = document.querySelector('.mobile-menu-button');
-      const menu = document.getElementById('mobileMenu');
-      
-      console.log('Initializing mobile menu...', { button: !!button, menu: !!menu });
-      
-      if (!button || !menu) {
-        console.error('Mobile menu elements not found!');
-        return;
-      }
-      
-      let isTogglingMenu = false;
-      
-      // Button click handler
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        isTogglingMenu = true;
-        const isActive = menu.classList.contains('active');
-        
-        if (isActive) {
-          menu.classList.remove('active');
-          console.log('Menu closed by button');
-        } else {
-          menu.classList.add('active');
-          console.log('Menu opened by button');
-        }
-        
-        setTimeout(function() {
-          isTogglingMenu = false;
-        }, 100);
-      });
-      
-      // Close menu when clicking links
-      const links = menu.querySelectorAll('a');
-      links.forEach(function(link) {
-        link.addEventListener('click', function() {
-          menu.classList.remove('active');
-          console.log('Menu closed by link click');
-        });
-      });
-      
-      // Close menu when clicking outside
-      document.addEventListener('click', function(e) {
-        if (isTogglingMenu) return;
-        
-        if (menu.classList.contains('active')) {
-          if (!menu.contains(e.target) && !button.contains(e.target)) {
-            menu.classList.remove('active');
-            console.log('Menu closed by outside click');
-          }
-        }
-      });
-      
-      // Prevent menu clicks from closing
-      menu.addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
-      
-      console.log('Mobile menu initialized successfully');
-    }
-    
-    // Initialize mobile menu
-    initMobileMenu();
-    
+
+
+
     // Theme toggle for mobile
     document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
   </script>
 </body>
+
 </html>
