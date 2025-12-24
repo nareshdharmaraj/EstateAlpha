@@ -5,10 +5,12 @@ function initThemeToggle() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
-  const themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-  }
+  const themeToggles = document.querySelectorAll('.theme-toggle');
+  themeToggles.forEach(toggle => {
+    // Remove existing listeners to avoid duplicates
+    toggle.removeEventListener('click', toggleTheme);
+    toggle.addEventListener('click', toggleTheme);
+  });
 }
 
 function toggleTheme() {
@@ -654,7 +656,10 @@ function handleNewsletterSubmit(event) {
 }
 
 // Initialize all features
+// Initialize all features
 document.addEventListener('DOMContentLoaded', function () {
+  initThemeToggle();
+  initRTLToggles();
   initPageTransitions();
   initCardEffects();
   initParallax();
