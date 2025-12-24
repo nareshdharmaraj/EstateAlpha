@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EstateAlpha - Classic Elegance in Real Estate</title>
-  
+
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
-  
+
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
+
   <style>
     .hero-video-overlay {
       position: absolute;
@@ -30,34 +32,34 @@
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 64, 175, 0.7));
       z-index: 1;
     }
-    
+
     .split-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
     }
-    
+
     @media (max-width: 768px) {
       .split-section {
         grid-template-columns: 1fr;
       }
     }
-    
+
     .luxury-card {
       backdrop-filter: blur(10px);
       background: rgba(255, 255, 255, 0.95);
     }
-    
+
     [data-theme="dark"] .luxury-card {
       background: rgba(30, 41, 59, 0.95);
     }
-    
+
     .elegant-border {
       border: 2px solid var(--accent-color);
       border-radius: 0;
       position: relative;
     }
-    
+
     .elegant-border::before {
       content: '';
       position: absolute;
@@ -68,15 +70,38 @@
       border: 1px solid var(--accent-color);
       opacity: 0.3;
     }
+
+    /* Hide desktop layout on mobile, show mobile layout */
+    @media (max-width: 1023px) {
+      #featured-properties-desktop {
+        display: none !important;
+      }
+      
+      #featured-properties-mobile {
+        display: grid !important;
+      }
+    }
+    
+    /* Hide mobile layout on desktop, show desktop layout */
+    @media (min-width: 1024px) {
+      #featured-properties-mobile {
+        display: none !important;
+      }
+      
+      #featured-properties-desktop {
+        display: grid !important;
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="navbar">
     <div class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
         <a href="index2.html" class="logo-text text-3xl">EstateAlpha</a>
-        
+
         <div class="hidden lg:flex items-center gap-8">
           <div class="dropdown">
             <button class="nav-link flex items-center gap-2">
@@ -87,12 +112,12 @@
               <a href="index2.html">Classic View</a>
             </div>
           </div>
-          
+
           <a href="about.html" class="nav-link">About</a>
           <a href="property-details.html" class="nav-link">Properties</a>
           <a href="faq.html" class="nav-link">FAQ</a>
           <a href="contact.html" class="nav-link">Contact</a>
-          
+
           <div class="dropdown">
             <button class="nav-link flex items-center gap-2">
               Dashboard <i class="fas fa-chevron-down text-xs"></i>
@@ -102,26 +127,26 @@
               <a href="admin-dashboard.html">Admin Panel</a>
             </div>
           </div>
-          
+
           <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
             <div class="theme-toggle-slider">
               <i class="fas fa-sun"></i>
             </div>
           </button>
-          
+
           <button id="rtlToggle" class="rtl-toggle" aria-label="Toggle RTL">
             <i class="fas fa-globe"></i>
           </button>
-          
+
           <a href="login.html" class="btn btn-primary">Login</a>
         </div>
-        
+
         <button class="lg:hidden mobile-menu-button text-2xl">
           <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
-    
+
     <div class="mobile-menu lg:hidden">
       <div class="container mx-auto px-4 py-4">
         <a href="index.html" class="block py-2 nav-link">Home - Modern</a>
@@ -132,7 +157,7 @@
         <a href="contact.html" class="block py-2 nav-link">Contact</a>
         <a href="user-dashboard.html" class="block py-2 nav-link">User Dashboard</a>
         <a href="admin-dashboard.html" class="block py-2 nav-link">Admin Dashboard</a>
-        
+
         <div class="flex items-center gap-4 mt-4">
           <button id="themeToggleMobile" class="theme-toggle">
             <div class="theme-toggle-slider"><i class="fas fa-sun"></i></div>
@@ -146,18 +171,21 @@
 
   <!-- Hero Section with Split Design -->
   <section class="pt-20">
-    <div class="split-section min-h-screen">
+    <div class="split-section" style="min-height: 50vh;">
       <!-- Left Side - Content -->
-      <div class="flex items-center justify-center p-8 md:p-16" style="background: linear-gradient(135deg, var(--surface), var(--background));">
+      <div class="flex items-center justify-center p-8 md:p-16"
+        style="background: linear-gradient(135deg, var(--surface), var(--background));">
         <div class="max-w-xl" data-aos="fade-right">
-          <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-4 block">Premium Real Estate</span>
+          <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-4 block">Premium Real
+            Estate</span>
           <h1 class="text-5xl md:text-6xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
             Timeless Elegance, <br>Modern Living
           </h1>
           <p class="text-xl mb-8 text-gray-600">
-            Experience luxury properties that blend classic architecture with contemporary comfort. Your dream estate awaits.
+            Experience luxury properties that blend classic architecture with contemporary comfort. Your dream estate
+            awaits.
           </p>
-          
+
           <div class="flex flex-col sm:flex-row gap-4 mb-12">
             <a href="property-details.html" class="btn btn-primary">
               <i class="fas fa-search"></i>
@@ -168,7 +196,7 @@
               Schedule Tour
             </a>
           </div>
-          
+
           <div class="grid grid-cols-3 gap-6">
             <div class="text-center">
               <div class="text-3xl font-bold gradient-text counter" data-target="1500">0</div>
@@ -185,9 +213,11 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Right Side - Image -->
-      <div class="relative min-h-[500px] md:min-h-screen" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80'); background-size: cover; background-position: center;" data-aos="fade-left">
+      <div class="relative min-h-[500px] md:min-h-screen"
+        style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80'); background-size: cover; background-position: center;"
+        data-aos="fade-left">
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
       </div>
     </div>
@@ -242,41 +272,177 @@
   <section class="py-20">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16" data-aos="fade-up">
-        <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-2 block">Exclusive Collections</span>
+        <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-2 block">Exclusive
+          Collections</span>
         <h2 class="text-4xl md:text-5xl font-bold mb-4">Signature Properties</h2>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto">
           Curated selection of the most prestigious properties in prime locations
         </p>
       </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <!-- Large Featured Property -->
-        <div class="property-card elegant-border" data-aos="fade-right">
-          <div class="relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" alt="Estate" class="w-full h-[500px] object-cover">
-            <div class="absolute top-6 left-6">
-              <span class="bg-yellow-500 text-white px-4 py-2 rounded-full text-sm font-bold">Signature Estate</span>
+
+      <!-- Mobile View - All Equal Size Cards -->
+      <div id="featured-properties-mobile" class="grid grid-cols-1 gap-4" style="display: none;">
+        <!-- Card 1 -->
+        <div class="property-card">
+          <div class="relative overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" alt="Estate"
+              class="w-full h-56 object-cover">
+            <div class="absolute top-4 left-4">
+              <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">Signature Estate</span>
             </div>
-            <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black to-transparent text-white">
-              <h3 class="text-3xl font-bold mb-2">Grand Mediterranean Villa</h3>
-              <p class="text-xl mb-4">Beverly Hills, California</p>
-              <div class="flex justify-between items-center">
-                <div class="flex gap-6">
-                  <span><i class="fas fa-bed"></i> 8 Beds</span>
-                  <span><i class="fas fa-bath"></i> 7 Baths</span>
-                  <span><i class="fas fa-ruler-combined"></i> 12,000 sqft</span>
+          </div>
+          <div class="p-4">
+            <h4 class="text-xl font-bold mb-2">Grand Mediterranean Villa</h4>
+            <p class="text-gray-600 mb-3"><i class="fas fa-map-marker-alt"></i> Beverly Hills, California</p>
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm"><i class="fas fa-bed"></i> 8 <i class="fas fa-bath ml-3"></i> 7 <i class="fas fa-ruler-combined ml-3"></i> 12,000 sqft</span>
+            </div>
+            <div class="font-bold text-2xl gradient-text">$8.5M</div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="property-card">
+          <div class="relative overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Estate"
+              class="w-full h-56 object-cover">
+            <div class="absolute top-4 left-4">
+              <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold">New Listing</span>
+            </div>
+          </div>
+          <div class="p-4">
+            <h4 class="text-xl font-bold mb-2">Modern Coastal Estate</h4>
+            <p class="text-gray-600 mb-3"><i class="fas fa-map-marker-alt"></i> Malibu, California</p>
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm"><i class="fas fa-bed"></i> 6 <i class="fas fa-bath ml-3"></i> 8 <i class="fas fa-ruler-combined ml-3"></i> 9,500 sqft</span>
+            </div>
+            <div class="font-bold text-2xl gradient-text">$12.5M</div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="property-card">
+          <div class="relative overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80" alt="Property"
+              class="w-full h-56 object-cover">
+          </div>
+          <div class="p-4">
+            <h4 class="text-xl font-bold mb-2">Skyline Penthouse</h4>
+            <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt"></i> Manhattan, NY</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm"><i class="fas fa-bed"></i> 4 <i class="fas fa-bath ml-3"></i> 3</span>
+              <span class="font-bold gradient-text">$3.2M</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="property-card">
+          <div class="relative overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400&q=80" alt="Property"
+              class="w-full h-56 object-cover">
+          </div>
+          <div class="p-4">
+            <h4 class="text-xl font-bold mb-2">Waterfront Estate</h4>
+            <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt"></i> Miami, FL</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm"><i class="fas fa-bed"></i> 6 <i class="fas fa-bath ml-3"></i> 5</span>
+              <span class="font-bold gradient-text">$4.8M</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="property-card">
+          <div class="relative overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Property"
+              class="w-full h-56 object-cover">
+          </div>
+          <div class="p-4">
+            <h4 class="text-xl font-bold mb-2">Mountain Retreat</h4>
+            <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt"></i> Aspen, CO</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm"><i class="fas fa-bed"></i> 5 <i class="fas fa-bath ml-3"></i> 4</span>
+              <span class="font-bold gradient-text">$5.5M</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="property-card">
+          <div class="relative overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=80" alt="Property"
+              class="w-full h-56 object-cover">
+          </div>
+          <div class="p-4">
+            <h4 class="text-xl font-bold mb-2">Modern Mansion</h4>
+            <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt"></i> Los Angeles, CA</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm"><i class="fas fa-bed"></i> 7 <i class="fas fa-bath ml-3"></i> 6</span>
+              <span class="font-bold gradient-text">$6.2M</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop View - Original Layout -->
+      <div id="featured-properties-desktop" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-0 lg:mb-8">
+        <!-- Large Featured Property -->
+        <!-- Large Featured Property Column -->
+        <div id="featured-large-cards" class="flex flex-col gap-8">
+          <!-- Card 1 -->
+          <div class="property-card elegant-border">
+            <div class="relative overflow-hidden h-[300px] sm:h-[350px] lg:h-[400px]">
+              <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" alt="Estate"
+                class="w-full h-full object-cover">
+              <div class="absolute top-6 left-6">
+                <span class="bg-yellow-500 text-white px-4 py-2 rounded-full text-sm font-bold">Signature Estate</span>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black to-transparent text-white">
+                <h3 class="text-3xl font-bold mb-2">Grand Mediterranean Villa</h3>
+                <p class="text-xl mb-4">Beverly Hills, California</p>
+                <div class="flex justify-between items-center">
+                  <div class="flex gap-6">
+                    <span><i class="fas fa-bed"></i> 8 Beds</span>
+                    <span><i class="fas fa-bath"></i> 7 Baths</span>
+                    <span><i class="fas fa-ruler-combined"></i> 12,000 sqft</span>
+                  </div>
+                  <div class="text-3xl font-bold">$8.5M</div>
                 </div>
-                <div class="text-3xl font-bold">$8.5M</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="property-card elegant-border">
+            <div class="relative overflow-hidden h-[300px] sm:h-[350px] lg:h-[400px]">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Estate"
+                class="w-full h-full object-cover">
+              <div class="absolute top-6 left-6">
+                <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold">New Listing</span>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black to-transparent text-white">
+                <h3 class="text-3xl font-bold mb-2">Modern Coastal Estate</h3>
+                <p class="text-xl mb-4">Malibu, California</p>
+                <div class="flex justify-between items-center">
+                  <div class="flex gap-6">
+                    <span><i class="fas fa-bed"></i> 6 Beds</span>
+                    <span><i class="fas fa-bath"></i> 8 Baths</span>
+                    <span><i class="fas fa-ruler-combined"></i> 9,500 sqft</span>
+                  </div>
+                  <div class="text-3xl font-bold">$12.5M</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <!-- Grid of smaller properties -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="featured-small-cards" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="property-card" data-aos="fade-up" data-aos-delay="100">
             <div class="relative overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80" alt="Property" class="w-full h-56 object-cover">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80" alt="Property"
+                class="w-full h-56 object-cover">
             </div>
             <div class="p-4">
               <h4 class="text-xl font-bold mb-2">Skyline Penthouse</h4>
@@ -287,10 +453,11 @@
               </div>
             </div>
           </div>
-          
+
           <div class="property-card" data-aos="fade-up" data-aos-delay="200">
             <div class="relative overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400&q=80" alt="Property" class="w-full h-56 object-cover">
+              <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400&q=80" alt="Property"
+                class="w-full h-56 object-cover">
             </div>
             <div class="p-4">
               <h4 class="text-xl font-bold mb-2">Waterfront Estate</h4>
@@ -301,10 +468,11 @@
               </div>
             </div>
           </div>
-          
+
           <div class="property-card" data-aos="fade-up" data-aos-delay="300">
             <div class="relative overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Property" class="w-full h-56 object-cover">
+              <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Property"
+                class="w-full h-56 object-cover">
             </div>
             <div class="p-4">
               <h4 class="text-xl font-bold mb-2">Mountain Retreat</h4>
@@ -315,10 +483,11 @@
               </div>
             </div>
           </div>
-          
+
           <div class="property-card" data-aos="fade-up" data-aos-delay="400">
             <div class="relative overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=80" alt="Property" class="w-full h-56 object-cover">
+              <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=80" alt="Property"
+                class="w-full h-56 object-cover">
             </div>
             <div class="p-4">
               <h4 class="text-xl font-bold mb-2">Modern Mansion</h4>
@@ -331,7 +500,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="text-center" data-aos="fade-up">
         <a href="property-details.html" class="btn btn-outline btn-lg">
           View All Luxury Properties
@@ -348,7 +517,7 @@
         <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-2 block">Our Services</span>
         <h2 class="text-4xl md:text-5xl font-bold mb-4">Comprehensive Real Estate Solutions</h2>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="card text-center hover:shadow-glow" data-aos="fade-up" data-aos-delay="100">
           <div class="feature-icon mx-auto">
@@ -357,7 +526,7 @@
           <h3 class="text-xl font-bold mb-3">Buy Property</h3>
           <p class="text-gray-600">Find your dream home from our exclusive listings</p>
         </div>
-        
+
         <div class="card text-center hover:shadow-glow" data-aos="fade-up" data-aos-delay="200">
           <div class="feature-icon mx-auto">
             <i class="fas fa-dollar-sign"></i>
@@ -365,7 +534,7 @@
           <h3 class="text-xl font-bold mb-3">Sell Property</h3>
           <p class="text-gray-600">Get the best value with our expert agents</p>
         </div>
-        
+
         <div class="card text-center hover:shadow-glow" data-aos="fade-up" data-aos-delay="300">
           <div class="feature-icon mx-auto">
             <i class="fas fa-key"></i>
@@ -373,7 +542,7 @@
           <h3 class="text-xl font-bold mb-3">Rent Property</h3>
           <p class="text-gray-600">Premium rental options for every lifestyle</p>
         </div>
-        
+
         <div class="card text-center hover:shadow-glow" data-aos="fade-up" data-aos-delay="400">
           <div class="feature-icon mx-auto">
             <i class="fas fa-chart-line"></i>
@@ -392,7 +561,7 @@
         <span class="text-yellow-500 font-semibold text-sm tracking-widest uppercase mb-2 block">Client Stories</span>
         <h2 class="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="card" data-aos="fade-up" data-aos-delay="100">
           <div class="flex items-center gap-4 mb-4">
@@ -400,42 +569,48 @@
             <div>
               <h4 class="font-bold">Michael Anderson</h4>
               <div class="text-yellow-500">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i>
               </div>
             </div>
           </div>
           <p class="text-gray-600 italic">
-            "EstateAlpha helped us find our dream home. Their professionalism and attention to detail made the entire process seamless."
+            "EstateAlpha helped us find our dream home. Their professionalism and attention to detail made the entire
+            process seamless."
           </p>
         </div>
-        
+
         <div class="card" data-aos="fade-up" data-aos-delay="200">
           <div class="flex items-center gap-4 mb-4">
             <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-16 h-16 rounded-full">
             <div>
               <h4 class="font-bold">Sarah Johnson</h4>
               <div class="text-yellow-500">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i>
               </div>
             </div>
           </div>
           <p class="text-gray-600 italic">
-            "Outstanding service! They understood exactly what we wanted and found the perfect property within our budget."
+            "Outstanding service! They understood exactly what we wanted and found the perfect property within our
+            budget."
           </p>
         </div>
-        
+
         <div class="card" data-aos="fade-up" data-aos-delay="300">
           <div class="flex items-center gap-4 mb-4">
             <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Client" class="w-16 h-16 rounded-full">
             <div>
               <h4 class="font-bold">David Martinez</h4>
               <div class="text-yellow-500">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i>
               </div>
             </div>
           </div>
           <p class="text-gray-600 italic">
-            "The team at EstateAlpha is incredibly knowledgeable. They guided us through every step of buying our first luxury home."
+            "The team at EstateAlpha is incredibly knowledgeable. They guided us through every step of buying our first
+            luxury home."
           </p>
         </div>
       </div>
@@ -443,7 +618,8 @@
   </section>
 
   <!-- CTA Section -->
-  <section class="py-20 relative" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <section class="py-20 relative"
+    style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed;">
     <div class="absolute inset-0 bg-black/70"></div>
     <div class="container mx-auto px-4 text-center relative z-10" data-aos="zoom-in">
       <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Start Your Property Journey Today</h2>
@@ -469,7 +645,8 @@
       <div class="footer-newsletter hidden md:block" data-aos="fade-up">
         <div class="max-w-4xl mx-auto text-center">
           <h3 class="text-2xl font-bold mb-3">Stay Updated with Property News</h3>
-          <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market insights, and exclusive offers.</p>
+          <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market
+            insights, and exclusive offers.</p>
           <form class="flex gap-3 max-w-md mx-auto" onsubmit="handleNewsletterSubmit(event)">
             <input type="email" placeholder="Enter your email" class="form-control flex-1" required>
             <button type="submit" class="btn btn-primary whitespace-nowrap">
@@ -479,13 +656,15 @@
           </form>
         </div>
       </div>
-      
+
       <!-- Main Footer Content -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 md:gap-6 py-2 md:py-4">
         <div class="lg:col-span-2">
           <a href="index.html" class="logo-text text-3xl mb-2 md:mb-4 block">EstateAlpha</a>
           <p class="text-gray-400 mb-3 md:mb-6 leading-relaxed hidden md:block">
-            Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their dream properties through innovative technology and exceptional service. Excellence in real estate since 2010.
+            Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their
+            dream properties through innovative technology and exceptional service. Excellence in real estate since
+            2010.
           </p>
           <div class="flex gap-3 hidden md:flex">
             <a href="#" class="social-icon-footer">
@@ -505,18 +684,19 @@
             </a>
           </div>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Quick Links</h4>
           <ul class="footer-links">
             <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> About Us</a></li>
-            <li><a href="property-details.html" class="footer-link"><i class="fas fa-chevron-right"></i> Properties</a></li>
+            <li><a href="property-details.html" class="footer-link"><i class="fas fa-chevron-right"></i> Properties</a>
+            </li>
             <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact</a></li>
             <li><a href="faq.html" class="footer-link"><i class="fas fa-chevron-right"></i> FAQ</a></li>
             <li><a href="login.html" class="footer-link"><i class="fas fa-chevron-right"></i> Login</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Property Types</h4>
           <ul class="footer-links">
@@ -527,7 +707,7 @@
             <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Land & Plots</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Contact Us</h4>
           <ul class="footer-contact">
@@ -545,7 +725,7 @@
             </li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Legal</h4>
           <ul class="footer-links">
@@ -556,7 +736,7 @@
           </ul>
         </div>
       </div>
-      
+
       <!-- Trust Badges -->
       <div class="footer-trust-badges" data-aos="fade-up">
         <div class="flex flex-wrap justify-center items-center gap-8">
@@ -578,7 +758,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Bottom Bar -->
       <div class="footer-bottom">
         <p class="text-gray-400 text-center">
@@ -598,34 +778,34 @@
       once: true,
       offset: 100
     });
-    
+
     // Mobile menu toggle
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const mobileMenu = document.querySelector('.mobile-menu');
-    
+
     if (mobileMenuButton && mobileMenu) {
       // Toggle menu on button click
-      mobileMenuButton.addEventListener('click', function(e) {
+      mobileMenuButton.addEventListener('click', function (e) {
         e.stopPropagation();
         mobileMenu.classList.toggle('active');
       });
-      
+
       // Close mobile menu when clicking on a link
       const mobileMenuLinks = mobileMenu.querySelectorAll('a');
       mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
           mobileMenu.classList.remove('active');
         });
       });
-      
+
       // Prevent clicks inside menu from closing it
-      mobileMenu.addEventListener('click', function(e) {
+      mobileMenu.addEventListener('click', function (e) {
         e.stopPropagation();
       });
     }
-    
+
     // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (mobileMenu && mobileMenu.classList.contains('active')) {
         const clickedButton = mobileMenuButton && mobileMenuButton.contains(e.target);
         if (!clickedButton) {
@@ -633,8 +813,9 @@
         }
       }
     });
-    
+
     document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
   </script>
 </body>
+
 </html>
