@@ -1,63 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Properties - EstateAlpha</title>
-  
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
+
   <style>
     .tab-button {
       transition: all 0.3s ease;
     }
-    
+
     .tab-button.active {
       background: rgba(245, 158, 11, 0.25) !important;
       border-color: rgba(245, 158, 11, 0.5) !important;
       box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
     }
-    
+
     .tab-button:hover {
       transform: translateY(-2px);
     }
-    
+
     .tab-content {
       display: none;
     }
-    
+
     .tab-content.active {
       display: block;
       animation: fadeIn 0.5s ease;
     }
-    
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    
+
     .filter-button {
       transition: all 0.3s ease;
     }
-    
+
     .filter-button.active {
       background: var(--accent-color);
       color: white;
     }
   </style>
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="navbar">
     <div class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
         <a href="index.html" class="logo-text text-3xl">EstateAlpha</a>
-        
+
         <div class="hidden lg:flex items-center gap-8">
           <div class="dropdown">
             <button class="nav-link flex items-center gap-2">
@@ -68,12 +78,12 @@
               <a href="index2.html">Classic View</a>
             </div>
           </div>
-          
+
           <a href="about.html" class="nav-link">About</a>
           <a href="property-details.html" class="nav-link">Properties</a>
           <a href="faq.html" class="nav-link">FAQ</a>
           <a href="contact.html" class="nav-link">Contact</a>
-          
+
           <div class="dropdown">
             <button class="nav-link flex items-center gap-2">
               Dashboard <i class="fas fa-chevron-down text-xs"></i>
@@ -83,24 +93,24 @@
               <a href="admin-dashboard.html">Admin Panel</a>
             </div>
           </div>
-          
+
           <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
             <div class="theme-toggle-slider"><i class="fas fa-sun"></i></div>
           </button>
-          
+
           <button id="rtlToggle" class="rtl-toggle" aria-label="Toggle RTL">
             <i class="fas fa-globe"></i>
           </button>
-          
+
           <a href="login.html" class="btn btn-primary">Login</a>
         </div>
-        
+
         <button class="lg:hidden mobile-menu-button text-2xl">
           <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
-    
+
     <div class="mobile-menu lg:hidden">
       <div class="container mx-auto px-4 py-4">
         <a href="index.html" class="block py-2 nav-link">Home - Modern</a>
@@ -111,7 +121,7 @@
         <a href="contact.html" class="block py-2 nav-link">Contact</a>
         <a href="user-dashboard.html" class="block py-2 nav-link">User Dashboard</a>
         <a href="admin-dashboard.html" class="block py-2 nav-link">Admin Dashboard</a>
-        
+
         <div class="flex items-center gap-4 mt-4">
           <button id="themeToggleMobile" class="theme-toggle">
             <div class="theme-toggle-slider"><i class="fas fa-sun"></i></div>
@@ -124,45 +134,51 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative pt-24 pb-12 md:pt-32 md:pb-16 overflow-hidden" style="min-height: 60vh;">
+  <section class="hero-section relative pt-24 pb-12 md:pt-32 md:pb-16 overflow-hidden flex items-center justify-center">
     <!-- Background Image with Overlay -->
     <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" 
-           alt="Premium Properties" 
-           class="w-full h-full object-cover">
+      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" alt="Premium Properties"
+        class="w-full h-full object-cover">
       <div class="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/70"></div>
     </div>
-    
+
     <!-- Animated Particles -->
     <div class="absolute inset-0 z-0">
       <div class="absolute top-20 left-20 w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-      <div class="absolute top-40 right-32 w-3 h-3 bg-primary rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
-      <div class="absolute bottom-32 left-40 w-2 h-2 bg-accent rounded-full animate-pulse" style="animation-delay: 1s;"></div>
-      <div class="absolute top-60 right-20 w-2 h-2 bg-primary rounded-full animate-pulse" style="animation-delay: 1.5s;"></div>
+      <div class="absolute top-40 right-32 w-3 h-3 bg-primary rounded-full animate-pulse"
+        style="animation-delay: 0.5s;"></div>
+      <div class="absolute bottom-32 left-40 w-2 h-2 bg-accent rounded-full animate-pulse" style="animation-delay: 1s;">
+      </div>
+      <div class="absolute top-60 right-20 w-2 h-2 bg-primary rounded-full animate-pulse"
+        style="animation-delay: 1.5s;"></div>
     </div>
-    
-    <div class="container mx-auto px-4 relative z-10">
+
+    <div class="container mx-auto px-4 relative z-10 flex flex-col items-center">
       <div class="text-center mb-8" data-aos="fade-up">
         <div class="inline-block px-4 py-2 bg-accent/20 backdrop-blur-sm rounded-full mb-6 border border-accent/30">
           <span class="text-accent text-sm font-semibold">🏆 Premium Collection</span>
         </div>
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white">
-          Explore Premium 
-          <span class="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">Properties</span>
+          Explore Premium Properties
         </h1>
         <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Find your perfect home from our curated collection of luxury real estate. Discover exceptional properties that match your lifestyle and aspirations.
+          Find your perfect home from our curated collection of luxury real estate. Discover exceptional properties that
+          match your lifestyle and aspirations.
         </p>
       </div>
-      
+
       <!-- Tab Navigation -->
       <div class="flex justify-center gap-4 md:gap-8 mb-4" data-aos="fade-up" data-aos-delay="100">
-        <button class="tab-button active flex items-center gap-2 text-base md:text-lg font-semibold py-3 px-6 rounded-xl transition-all duration-300 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:bg-white/20 text-white" data-tab="browse">
+        <button
+          class="tab-button active flex items-center gap-2 text-base md:text-lg font-semibold py-3 px-6 rounded-xl transition-all duration-300 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:bg-white/20 text-white"
+          data-tab="browse">
           <i class="fas fa-th-large"></i>
           <span class="hidden sm:inline">Browse All Properties</span>
           <span class="sm:hidden">Browse All</span>
         </button>
-        <button class="tab-button flex items-center gap-2 text-base md:text-lg font-semibold py-3 px-6 rounded-xl transition-all duration-300 bg-white/5 backdrop-blur-md border-2 border-white/10 hover:bg-white/20 text-white" data-tab="featured">
+        <button
+          class="tab-button flex items-center gap-2 text-base md:text-lg font-semibold py-3 px-6 rounded-xl transition-all duration-300 bg-white/5 backdrop-blur-md border-2 border-white/10 hover:bg-white/20 text-white"
+          data-tab="featured">
           <i class="fas fa-star"></i>
           <span class="hidden sm:inline">Featured Property</span>
           <span class="sm:hidden">Featured</span>
@@ -205,7 +221,7 @@
             <i class="fas fa-filter"></i> Filter
           </button>
         </div>
-        
+
         <div class="flex flex-wrap gap-3">
           <button class="filter-button active px-4 py-2 rounded-full border-2 border-gray-300">All</button>
           <button class="filter-button px-4 py-2 rounded-full border-2 border-gray-300">For Sale</button>
@@ -214,13 +230,15 @@
           <button class="filter-button px-4 py-2 rounded-full border-2 border-gray-300">New Listings</button>
         </div>
       </div>
-      
+
       <!-- Properties Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Property 1 -->
-        <div class="property-card" data-aos="fade-up" data-category="luxury" data-type="Villa" data-price="1200000" data-beds="5">
+        <div class="property-card" data-aos="fade-up" data-category="luxury" data-type="Villa" data-price="1200000"
+          data-beds="5">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Villa" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Villa"
+              class="w-full h-64 object-cover">
             <span class="property-badge">Featured</span>
           </div>
           <div class="p-6">
@@ -243,9 +261,11 @@
         </div>
 
         <!-- Property 2 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="new" data-type="Penthouse" data-price="850000" data-beds="3">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="new" data-type="Penthouse"
+          data-price="850000" data-beds="3">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Penthouse" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Penthouse"
+              class="w-full h-64 object-cover">
             <span class="property-badge">New</span>
           </div>
           <div class="p-6">
@@ -268,9 +288,11 @@
         </div>
 
         <!-- Property 3 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="luxury" data-type="Villa" data-price="2500000" data-beds="6">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="luxury" data-type="Villa"
+          data-price="2500000" data-beds="6">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Beach House" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Beach House"
+              class="w-full h-64 object-cover">
             <span class="property-badge">Hot</span>
           </div>
           <div class="p-6">
@@ -293,9 +315,11 @@
         </div>
 
         <!-- Property 4 -->
-        <div class="property-card" data-aos="fade-up" data-category="sale" data-type="Apartment" data-price="650000" data-beds="2">
+        <div class="property-card" data-aos="fade-up" data-category="sale" data-type="Apartment" data-price="650000"
+          data-beds="2">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Apartment" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Apartment"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-3">
@@ -317,9 +341,11 @@
         </div>
 
         <!-- Property 5 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="sale" data-type="Villa" data-price="1800000" data-beds="7">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="sale" data-type="Villa"
+          data-price="1800000" data-beds="7">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="Estate" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="Estate"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-3">
@@ -341,9 +367,11 @@
         </div>
 
         <!-- Property 6 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="rent" data-type="Apartment" data-price="550000" data-beds="2">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="rent" data-type="Apartment"
+          data-price="550000" data-beds="2">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="Loft" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="Loft"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-3">
@@ -365,9 +393,11 @@
         </div>
 
         <!-- Property 7 -->
-        <div class="property-card" data-aos="fade-up" data-category="sale" data-type="House" data-price="720000" data-beds="4">
+        <div class="property-card" data-aos="fade-up" data-category="sale" data-type="House" data-price="720000"
+          data-beds="4">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=600&q=80" alt="House" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=600&q=80" alt="House"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-3">
@@ -389,9 +419,11 @@
         </div>
 
         <!-- Property 8 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="new" data-type="Apartment" data-price="480000" data-beds="2">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="new" data-type="Apartment"
+          data-price="480000" data-beds="2">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80" alt="Condo" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80" alt="Condo"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-3">
@@ -413,9 +445,11 @@
         </div>
 
         <!-- Property 9 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="sale" data-type="Townhouse" data-price="890000" data-beds="3">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="sale" data-type="Townhouse"
+          data-price="890000" data-beds="3">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80" alt="Townhouse" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80" alt="Townhouse"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-3">
@@ -437,9 +471,11 @@
         </div>
 
         <!-- Property 10 -->
-        <div class="property-card" data-aos="fade-up" data-category="rent" data-type="Apartment" data-price="3500" data-beds="2">
+        <div class="property-card" data-aos="fade-up" data-category="rent" data-type="Apartment" data-price="3500"
+          data-beds="2">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80" alt="Apartment" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80" alt="Apartment"
+              class="w-full h-64 object-cover">
             <span class="property-badge bg-green-500">For Rent</span>
           </div>
           <div class="p-6">
@@ -462,9 +498,11 @@
         </div>
 
         <!-- Property 11 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="luxury" data-type="Villa" data-price="3200000" data-beds="8">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="luxury" data-type="Villa"
+          data-price="3200000" data-beds="8">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="Villa" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="Villa"
+              class="w-full h-64 object-cover">
             <span class="property-badge bg-purple-500">Luxury</span>
           </div>
           <div class="p-6">
@@ -487,9 +525,11 @@
         </div>
 
         <!-- Property 12 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="new" data-type="House" data-price="625000" data-beds="3">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="new" data-type="House"
+          data-price="625000" data-beds="3">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="House" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="House"
+              class="w-full h-64 object-cover">
             <span class="property-badge bg-blue-500">New</span>
           </div>
           <div class="p-6">
@@ -512,9 +552,11 @@
         </div>
 
         <!-- Property 13 -->
-        <div class="property-card" data-aos="fade-up" data-category="rent" data-type="Apartment" data-price="2800" data-beds="1">
+        <div class="property-card" data-aos="fade-up" data-category="rent" data-type="Apartment" data-price="2800"
+          data-beds="1">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80" alt="Studio" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80" alt="Studio"
+              class="w-full h-64 object-cover">
             <span class="property-badge bg-green-500">For Rent</span>
           </div>
           <div class="p-6">
@@ -537,9 +579,11 @@
         </div>
 
         <!-- Property 14 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="sale" data-type="Penthouse" data-price="1950000" data-beds="4">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="sale" data-type="Penthouse"
+          data-price="1950000" data-beds="4">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Penthouse" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Penthouse"
+              class="w-full h-64 object-cover">
             <span class="property-badge">Featured</span>
           </div>
           <div class="p-6">
@@ -562,9 +606,11 @@
         </div>
 
         <!-- Property 15 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="luxury" data-type="Villa" data-price="4500000" data-beds="10">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="luxury" data-type="Villa"
+          data-price="4500000" data-beds="10">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1633505897127-c9c39ba60686?w=600&q=80" alt="Mansion" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1633505897127-c9c39ba60686?w=600&q=80" alt="Mansion"
+              class="w-full h-64 object-cover">
             <span class="property-badge bg-purple-500">Luxury</span>
           </div>
           <div class="p-6">
@@ -587,9 +633,11 @@
         </div>
 
         <!-- Property 16 -->
-        <div class="property-card" data-aos="fade-up" data-category="new" data-type="Townhouse" data-price="745000" data-beds="4">
+        <div class="property-card" data-aos="fade-up" data-category="new" data-type="Townhouse" data-price="745000"
+          data-beds="4">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=600&q=80" alt="Townhouse" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=600&q=80" alt="Townhouse"
+              class="w-full h-64 object-cover">
             <span class="property-badge bg-blue-500">New</span>
           </div>
           <div class="p-6">
@@ -612,9 +660,11 @@
         </div>
 
         <!-- Property 17 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="rent" data-type="House" data-price="4200" data-beds="5">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="100" data-category="rent" data-type="House"
+          data-price="4200" data-beds="5">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="House" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="House"
+              class="w-full h-64 object-cover">
             <span class="property-badge bg-green-500">For Rent</span>
           </div>
           <div class="p-6">
@@ -637,9 +687,11 @@
         </div>
 
         <!-- Property 18 -->
-        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="sale" data-type="Apartment" data-price="520000" data-beds="2">
+        <div class="property-card" data-aos="fade-up" data-aos-delay="200" data-category="sale" data-type="Apartment"
+          data-price="520000" data-beds="2">
           <div class="relative overflow-hidden rounded-t-2xl">
-            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" alt="Apartment" class="w-full h-64 object-cover">
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" alt="Apartment"
+              class="w-full h-64 object-cover">
           </div>
           <div class="p-6">
             <div class="flex justify-between items-start mb-3">
@@ -660,16 +712,20 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Pagination -->
       <div class="flex justify-center gap-2 mt-12" data-aos="fade-up">
-        <button class="px-4 py-2 border-2 border-gray-300 rounded-lg hover:bg-yellow-500 hover:text-white hover:border-yellow-500 transition">
+        <button
+          class="px-4 py-2 border-2 border-gray-300 rounded-lg hover:bg-yellow-500 hover:text-white hover:border-yellow-500 transition">
           <i class="fas fa-chevron-left"></i>
         </button>
         <button class="px-4 py-2 bg-yellow-500 text-white border-2 border-yellow-500 rounded-lg">1</button>
-        <button class="px-4 py-2 border-2 border-gray-300 rounded-lg hover:bg-yellow-500 hover:text-white hover:border-yellow-500 transition">2</button>
-        <button class="px-4 py-2 border-2 border-gray-300 rounded-lg hover:bg-yellow-500 hover:text-white hover:border-yellow-500 transition">3</button>
-        <button class="px-4 py-2 border-2 border-gray-300 rounded-lg hover:bg-yellow-500 hover:text-white hover:border-yellow-500 transition">
+        <button
+          class="px-4 py-2 border-2 border-gray-300 rounded-lg hover:bg-yellow-500 hover:text-white hover:border-yellow-500 transition">2</button>
+        <button
+          class="px-4 py-2 border-2 border-gray-300 rounded-lg hover:bg-yellow-500 hover:text-white hover:border-yellow-500 transition">3</button>
+        <button
+          class="px-4 py-2 border-2 border-gray-300 rounded-lg hover:bg-yellow-500 hover:text-white hover:border-yellow-500 transition">
           <i class="fas fa-chevron-right"></i>
         </button>
       </div>
@@ -687,39 +743,39 @@
             <!-- Input Section -->
             <div>
               <h3 class="text-2xl font-bold mb-6">Property Details</h3>
-              
+
               <div class="space-y-4">
                 <div>
                   <label class="block text-sm font-semibold mb-2">Purchase Price ($)</label>
                   <input type="number" id="purchasePrice" class="form-control" placeholder="500000" value="500000">
                 </div>
-                
+
                 <div>
                   <label class="block text-sm font-semibold mb-2">Down Payment (%)</label>
                   <input type="number" id="downPayment" class="form-control" placeholder="20" value="20">
                 </div>
-                
+
                 <div>
                   <label class="block text-sm font-semibold mb-2">Monthly Rent ($)</label>
                   <input type="number" id="monthlyRent" class="form-control" placeholder="3000" value="3000">
                 </div>
-                
+
                 <div>
                   <label class="block text-sm font-semibold mb-2">Annual Appreciation (%)</label>
                   <input type="number" id="appreciation" class="form-control" placeholder="3" value="3" step="0.1">
                 </div>
-                
+
                 <div>
                   <label class="block text-sm font-semibold mb-2">Monthly Expenses ($)</label>
                   <input type="number" id="monthlyExpenses" class="form-control" placeholder="800" value="800">
                 </div>
-                
+
                 <div>
                   <label class="block text-sm font-semibold mb-2">Interest Rate (%)</label>
                   <input type="number" id="interestRate" class="form-control" placeholder="6.5" value="6.5" step="0.1">
                 </div>
               </div>
-              
+
               <button onclick="calculateROI()" class="btn btn-primary w-full mt-6">
                 <i class="fas fa-calculator"></i> Calculate ROI
               </button>
@@ -728,43 +784,44 @@
             <!-- Results Section -->
             <div class="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-6">
               <h3 class="text-2xl font-bold mb-6">Investment Analysis</h3>
-              
+
               <div class="space-y-4">
                 <div class="bg-white rounded-lg p-4 shadow-sm">
                   <p class="text-sm text-gray-600 mb-1">Annual Cash Flow</p>
                   <p class="text-2xl font-bold text-green-500" id="cashFlow">$0</p>
                 </div>
-                
+
                 <div class="bg-white rounded-lg p-4 shadow-sm">
                   <p class="text-sm text-gray-600 mb-1">Cash-on-Cash Return</p>
                   <p class="text-2xl font-bold text-blue-500" id="cashReturn">0%</p>
                 </div>
-                
+
                 <div class="bg-white rounded-lg p-4 shadow-sm">
                   <p class="text-sm text-gray-600 mb-1">Annual ROI</p>
                   <p class="text-2xl font-bold text-primary" id="roiResult">0%</p>
                 </div>
-                
+
                 <div class="bg-white rounded-lg p-4 shadow-sm">
                   <p class="text-sm text-gray-600 mb-1">Monthly Mortgage Payment</p>
                   <p class="text-2xl font-bold text-gray-700" id="mortgagePayment">$0</p>
                 </div>
-                
+
                 <div class="bg-white rounded-lg p-4 shadow-sm">
                   <p class="text-sm text-gray-600 mb-1">Total Investment</p>
                   <p class="text-2xl font-bold text-gray-700" id="totalInvestment">$0</p>
                 </div>
-                
+
                 <div class="bg-white rounded-lg p-4 shadow-sm">
                   <p class="text-sm text-gray-600 mb-1">Cap Rate</p>
                   <p class="text-2xl font-bold text-purple-500" id="capRate">0%</p>
                 </div>
               </div>
-              
+
               <div class="mt-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                 <p class="text-sm text-gray-700">
                   <i class="fas fa-info-circle text-blue-500 mr-2"></i>
-                  <strong>Note:</strong> These calculations are estimates. Consult with a financial advisor for detailed investment analysis.
+                  <strong>Note:</strong> These calculations are estimates. Consult with a financial advisor for detailed
+                  investment analysis.
                 </p>
               </div>
             </div>
@@ -781,24 +838,29 @@
         <!-- Property Images Gallery -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8" data-aos="fade-up">
           <div class="rounded-2xl overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Main" class="w-full h-[500px] object-cover">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Main"
+              class="w-full h-[500px] object-cover">
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div class="rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Interior" class="w-full h-60 object-cover">
+              <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Interior"
+                class="w-full h-60 object-cover">
             </div>
             <div class="rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=80" alt="Exterior" class="w-full h-60 object-cover">
+              <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=80" alt="Exterior"
+                class="w-full h-60 object-cover">
             </div>
             <div class="rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80" alt="View" class="w-full h-60 object-cover">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80" alt="View"
+                class="w-full h-60 object-cover">
             </div>
             <div class="rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400&q=80" alt="Detail" class="w-full h-60 object-cover">
+              <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400&q=80" alt="Detail"
+                class="w-full h-60 object-cover">
             </div>
           </div>
         </div>
-        
+
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Property Details -->
           <div class="lg:col-span-2">
@@ -812,7 +874,7 @@
                 </div>
                 <div class="text-4xl font-bold gradient-text">$1,200,000</div>
               </div>
-              
+
               <div class="grid grid-cols-4 gap-4 py-6 border-y-2 border-gray-200 mb-6">
                 <div class="text-center">
                   <div class="text-2xl font-bold">5</div>
@@ -831,20 +893,22 @@
                   <div class="text-gray-600">Year Built</div>
                 </div>
               </div>
-              
+
               <div class="mb-6">
                 <h3 class="text-2xl font-bold mb-4">Description</h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Experience luxury living at its finest in this stunning waterfront villa. This exquisite property offers 
+                  Experience luxury living at its finest in this stunning waterfront villa. This exquisite property
+                  offers
                   breathtaking ocean views, premium finishes, and state-of-the-art amenities throughout.
                 </p>
                 <p class="text-gray-600 leading-relaxed">
-                  The open-concept design seamlessly blends indoor and outdoor living spaces, perfect for entertaining. 
-                  Features include a gourmet chef's kitchen, spa-like bathrooms, smart home technology, and a resort-style 
+                  The open-concept design seamlessly blends indoor and outdoor living spaces, perfect for entertaining.
+                  Features include a gourmet chef's kitchen, spa-like bathrooms, smart home technology, and a
+                  resort-style
                   backyard with infinity pool and outdoor kitchen.
                 </p>
               </div>
-              
+
               <div class="mb-6">
                 <h3 class="text-2xl font-bold mb-4">Key Features</h3>
                 <div class="grid grid-cols-2 gap-4">
@@ -884,12 +948,12 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Agent Card -->
           <div class="lg:col-span-1">
             <div class="card p-6 sticky top-24" data-aos="fade-up" data-aos-delay="200">
               <h3 class="text-2xl font-bold mb-6">Contact Agent</h3>
-              
+
               <div class="flex items-center gap-4 mb-6">
                 <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Agent" class="w-20 h-20 rounded-full">
                 <div>
@@ -904,7 +968,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <form class="space-y-4">
                 <input type="text" class="form-control" placeholder="Your Name" required>
                 <input type="email" class="form-control" placeholder="Email Address" required>
@@ -915,7 +979,7 @@
                   Send Message
                 </button>
               </form>
-              
+
               <div class="mt-6 pt-6 border-t-2 border-gray-200 space-y-3">
                 <a href="tel:+15551234567" class="btn btn-outline w-full">
                   <i class="fas fa-phone"></i> Call Agent
@@ -939,7 +1003,8 @@
       <div class="footer-newsletter hidden md:block" data-aos="fade-up">
         <div class="max-w-4xl mx-auto text-center">
           <h3 class="text-2xl font-bold mb-3">Stay Updated with Property News</h3>
-          <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market insights, and exclusive offers.</p>
+          <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter and get the latest listings, market
+            insights, and exclusive offers.</p>
           <form class="flex gap-3 max-w-md mx-auto" onsubmit="handleNewsletterSubmit(event)">
             <input type="email" placeholder="Enter your email" class="form-control flex-1" required>
             <button type="submit" class="btn btn-primary whitespace-nowrap">
@@ -949,13 +1014,15 @@
           </form>
         </div>
       </div>
-      
+
       <!-- Main Footer Content -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 md:gap-6 py-2 md:py-4">
         <div class="lg:col-span-2">
           <a href="index.html" class="logo-text text-3xl mb-2 md:mb-4 block">EstateAlpha</a>
           <p class="text-gray-400 mb-3 md:mb-6 leading-relaxed hidden md:block">
-            Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their dream properties through innovative technology and exceptional service. Excellence in real estate since 2010.
+            Your trusted partner in finding the perfect property. We connect buyers, sellers, and renters with their
+            dream properties through innovative technology and exceptional service. Excellence in real estate since
+            2010.
           </p>
           <div class="flex gap-3 hidden md:flex">
             <a href="#" class="social-icon-footer">
@@ -975,18 +1042,19 @@
             </a>
           </div>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Quick Links</h4>
           <ul class="footer-links">
             <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> About Us</a></li>
-            <li><a href="property-details.html" class="footer-link"><i class="fas fa-chevron-right"></i> Properties</a></li>
+            <li><a href="property-details.html" class="footer-link"><i class="fas fa-chevron-right"></i> Properties</a>
+            </li>
             <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact</a></li>
             <li><a href="faq.html" class="footer-link"><i class="fas fa-chevron-right"></i> FAQ</a></li>
             <li><a href="login.html" class="footer-link"><i class="fas fa-chevron-right"></i> Login</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Property Types</h4>
           <ul class="footer-links">
@@ -997,7 +1065,7 @@
             <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> Land & Plots</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Contact Us</h4>
           <ul class="footer-contact">
@@ -1015,7 +1083,7 @@
             </li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="footer-heading">Legal</h4>
           <ul class="footer-links">
@@ -1026,7 +1094,7 @@
           </ul>
         </div>
       </div>
-      
+
       <!-- Trust Badges -->
       <div class="footer-trust-badges" data-aos="fade-up">
         <div class="flex flex-wrap justify-center items-center gap-8">
@@ -1048,7 +1116,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Bottom Bar -->
       <div class="footer-bottom">
         <p class="text-gray-400 text-center">
@@ -1068,31 +1136,31 @@
       once: true,
       offset: 100
     });
-    
+
     // Tab switching
     document.querySelectorAll('.tab-button').forEach(button => {
-      button.addEventListener('click', function() {
+      button.addEventListener('click', function () {
         const tabName = this.getAttribute('data-tab');
-        
+
         // Update button states
         document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
         this.classList.add('active');
-        
+
         // Update content
         document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
         document.getElementById(tabName + '-tab').classList.add('active');
       });
     });
-    
+
     // Instant Filter System
     document.querySelectorAll('.filter-button').forEach(button => {
-      button.addEventListener('click', function() {
+      button.addEventListener('click', function () {
         document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
         this.classList.add('active');
-        
+
         const filterText = this.textContent.trim().toLowerCase();
         const propertyCards = document.querySelectorAll('.property-card');
-        
+
         propertyCards.forEach(card => {
           if (filterText === 'all') {
             card.style.display = 'block';
@@ -1115,7 +1183,7 @@
         });
       });
     });
-    
+
     // ROI Calculator Function
     function calculateROI() {
       // Get input values
@@ -1125,44 +1193,44 @@
       const appreciation = parseFloat(document.getElementById('appreciation').value) || 0;
       const monthlyExpenses = parseFloat(document.getElementById('monthlyExpenses').value) || 0;
       const interestRate = parseFloat(document.getElementById('interestRate').value) || 0;
-      
+
       // Calculate derived values
       const downPaymentAmount = purchasePrice * (downPaymentPercent / 100);
       const loanAmount = purchasePrice - downPaymentAmount;
       const monthlyInterestRate = (interestRate / 100) / 12;
       const numberOfPayments = 30 * 12; // 30-year mortgage
-      
+
       // Monthly mortgage payment calculation
       let monthlyMortgage = 0;
       if (loanAmount > 0 && monthlyInterestRate > 0) {
-        monthlyMortgage = loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
-                         (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+        monthlyMortgage = loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
+          (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
       }
-      
+
       // Annual calculations
       const annualRent = monthlyRent * 12;
       const annualExpenses = (monthlyExpenses + monthlyMortgage) * 12;
       const annualCashFlow = annualRent - annualExpenses;
-      
+
       // ROI calculations
       const totalInvestment = downPaymentAmount + (purchasePrice * 0.05); // Including closing costs (~5%)
       const cashOnCashReturn = (annualCashFlow / totalInvestment) * 100;
       const appreciationGain = purchasePrice * (appreciation / 100);
       const totalAnnualReturn = annualCashFlow + appreciationGain;
       const roi = (totalAnnualReturn / totalInvestment) * 100;
-      
+
       // Cap rate calculation
       const netOperatingIncome = annualRent - (monthlyExpenses * 12);
       const capRate = (netOperatingIncome / purchasePrice) * 100;
-      
+
       // Update UI with results
-      document.getElementById('cashFlow').textContent = '$' + annualCashFlow.toLocaleString('en-US', {maximumFractionDigits: 0});
+      document.getElementById('cashFlow').textContent = '$' + annualCashFlow.toLocaleString('en-US', { maximumFractionDigits: 0 });
       document.getElementById('cashReturn').textContent = cashOnCashReturn.toFixed(2) + '%';
       document.getElementById('roiResult').textContent = roi.toFixed(2) + '%';
-      document.getElementById('mortgagePayment').textContent = '$' + monthlyMortgage.toLocaleString('en-US', {maximumFractionDigits: 0});
-      document.getElementById('totalInvestment').textContent = '$' + totalInvestment.toLocaleString('en-US', {maximumFractionDigits: 0});
+      document.getElementById('mortgagePayment').textContent = '$' + monthlyMortgage.toLocaleString('en-US', { maximumFractionDigits: 0 });
+      document.getElementById('totalInvestment').textContent = '$' + totalInvestment.toLocaleString('en-US', { maximumFractionDigits: 0 });
       document.getElementById('capRate').textContent = capRate.toFixed(2) + '%';
-      
+
       // Color code results
       if (roi > 10) {
         document.getElementById('roiResult').className = 'text-2xl font-bold text-green-500';
@@ -1172,55 +1240,55 @@
         document.getElementById('roiResult').className = 'text-2xl font-bold text-red-500';
       }
     }
-    
+
     // Auto-calculate on input change
     ['purchasePrice', 'downPayment', 'monthlyRent', 'appreciation', 'monthlyExpenses', 'interestRate'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', calculateROI);
     });
-    
+
     // Initial calculation
     window.addEventListener('load', calculateROI);
-    
+
     // Show details function
     function showDetails(id) {
       // Switch to featured tab
       document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       document.querySelector('[data-tab="featured"]').classList.add('active');
-      
+
       document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
       document.getElementById('featured-tab').classList.add('active');
-      
+
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    
+
     // Mobile menu toggle
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const mobileMenu = document.querySelector('.mobile-menu');
-    
+
     if (mobileMenuButton && mobileMenu) {
       // Toggle menu on button click
-      mobileMenuButton.addEventListener('click', function(e) {
+      mobileMenuButton.addEventListener('click', function (e) {
         e.stopPropagation();
         mobileMenu.classList.toggle('active');
       });
-      
+
       // Close mobile menu when clicking on a link
       const mobileMenuLinks = mobileMenu.querySelectorAll('a');
       mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
           mobileMenu.classList.remove('active');
         });
       });
-      
+
       // Prevent clicks inside menu from closing it
-      mobileMenu.addEventListener('click', function(e) {
+      mobileMenu.addEventListener('click', function (e) {
         e.stopPropagation();
       });
     }
-    
+
     // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (mobileMenu && mobileMenu.classList.contains('active')) {
         const clickedButton = mobileMenuButton && mobileMenuButton.contains(e.target);
         if (!clickedButton) {
@@ -1228,8 +1296,9 @@
         }
       }
     });
-    
+
     document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
   </script>
 </body>
+
 </html>

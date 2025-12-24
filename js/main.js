@@ -354,10 +354,10 @@ document.addEventListener('DOMContentLoaded', function () {
       const updateCounter = () => {
         if (count < target) {
           count += increment;
-          element.innerText = Math.ceil(count);
+          element.innerText = Math.ceil(count) + "+";
           setTimeout(updateCounter, 20);
         } else {
-          element.innerText = target;
+          element.innerText = target + "+";
         }
       };
 
@@ -522,6 +522,9 @@ function initCharts() {
     // Revenue Chart
     const revenueCtx = document.getElementById('revenueChart');
     if (revenueCtx) {
+      const existingChart = Chart.getChart(revenueCtx);
+      if (existingChart) existingChart.destroy();
+
       new Chart(revenueCtx, {
         type: 'line',
         data: {
@@ -548,6 +551,9 @@ function initCharts() {
     // Properties Chart
     const propertiesCtx = document.getElementById('propertiesChart');
     if (propertiesCtx) {
+      const existingChart = Chart.getChart(propertiesCtx);
+      if (existingChart) existingChart.destroy();
+
       new Chart(propertiesCtx, {
         type: 'bar',
         data: {
@@ -571,6 +577,9 @@ function initCharts() {
     // User Activity Chart
     const activityCtx = document.getElementById('activityChart');
     if (activityCtx) {
+      const existingChart = Chart.getChart(activityCtx);
+      if (existingChart) existingChart.destroy();
+
       new Chart(activityCtx, {
         type: 'doughnut',
         data: {

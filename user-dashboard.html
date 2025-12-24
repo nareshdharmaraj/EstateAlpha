@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard - EstateAlpha</title>
-  
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-  
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="css/style.css">
-  
+
   <style>
     .dashboard-layout {
       display: flex;
       min-height: 100vh;
       background: var(--bg-color);
     }
-    
+
     .dashboard-sidebar {
       background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
       color: white;
@@ -33,20 +37,20 @@
       transition: transform 0.3s ease;
       box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
     }
-    
+
     [dir="rtl"] .dashboard-sidebar {
       left: auto;
       right: 0;
     }
-    
+
     .dashboard-sidebar-hidden {
       transform: translateX(-100%);
     }
-    
+
     [dir="rtl"] .dashboard-sidebar-hidden {
       transform: translateX(100%);
     }
-    
+
     .dashboard-main {
       margin-left: 260px;
       flex: 1;
@@ -54,29 +58,29 @@
       transition: margin 0.3s ease;
       width: calc(100% - 260px);
     }
-    
+
     [dir="rtl"] .dashboard-main {
       margin-left: 0;
       margin-right: 260px;
     }
-    
+
     .dashboard-main-expanded {
       margin-left: 0;
     }
-    
+
     [dir="rtl"] .dashboard-main-expanded {
       margin-right: 0;
     }
-    
+
     .sidebar-brand {
       padding: 1.5rem 1.25rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
+
     .sidebar-nav {
       padding: 1rem 0;
     }
-    
+
     .sidebar-item {
       display: flex;
       align-items: center;
@@ -88,27 +92,27 @@
       border-left: 3px solid transparent;
       font-size: 0.95rem;
     }
-    
+
     [dir="rtl"] .sidebar-item {
       border-left: none;
       border-right: 3px solid transparent;
     }
-    
+
     .sidebar-item:hover {
       background: rgba(255, 255, 255, 0.1);
       color: white;
     }
-    
+
     .sidebar-item.active {
       background: rgba(255, 255, 255, 0.15);
       color: white;
       border-left-color: var(--accent-color);
     }
-    
+
     [dir="rtl"] .sidebar-item.active {
       border-right-color: var(--accent-color);
     }
-    
+
     .stat-card {
       background: white;
       padding: 1.5rem;
@@ -117,21 +121,21 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border: 1px solid var(--border-color);
     }
-    
+
     [data-theme="dark"] .stat-card {
       background: #1E293B;
     }
-    
+
     .stat-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.15);
     }
-    
+
     .chart-container {
       position: relative;
       height: 300px;
     }
-    
+
     .tab-buttons {
       display: flex;
       gap: 0.5rem;
@@ -139,7 +143,7 @@
       margin-bottom: 2rem;
       flex-wrap: wrap;
     }
-    
+
     .tab-button {
       padding: 1rem 1.5rem;
       background: transparent;
@@ -151,81 +155,82 @@
       border-bottom: 3px solid transparent;
       margin-bottom: -2px;
     }
-    
+
     .tab-button:hover {
       color: var(--primary-color);
     }
-    
+
     .tab-button.active {
       color: var(--primary-color);
       border-bottom-color: var(--primary-color);
     }
-    
+
     .tab-content {
       display: none;
     }
-    
+
     .tab-content.active {
       display: block;
       animation: fadeIn 0.4s ease;
     }
-    
+
     @media (max-width: 1024px) {
       .dashboard-main {
         margin-left: 0;
         width: 100%;
       }
-      
+
       [dir="rtl"] .dashboard-main {
         margin-right: 0;
       }
-      
+
       .dashboard-sidebar {
         transform: translateX(-100%);
       }
-      
+
       [dir="rtl"] .dashboard-sidebar {
         transform: translateX(100%);
       }
-      
+
       .dashboard-sidebar.active {
         transform: translateX(0);
       }
-      
+
       .stat-card {
         padding: 1.25rem;
       }
-      
+
       .chart-container {
         height: 250px;
       }
     }
-    
+
     @media (max-width: 640px) {
       .sidebar-brand {
         padding: 1.25rem 1rem;
       }
-      
+
       .sidebar-item {
         padding: 0.75rem 1rem;
         font-size: 0.9rem;
       }
-      
+
       .stat-card h3 {
         font-size: 1.5rem;
       }
-      
+
       .stat-card .w-14 {
         width: 3rem;
         height: 3rem;
       }
-      
+
       .stat-card .text-xl {
         font-size: 1rem;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="dashboard-layout">
     <!-- Sidebar -->
@@ -234,15 +239,16 @@
         <a href="index.html" class="logo-text text-2xl">EstateAlpha</a>
         <p class="text-white/60 text-sm mt-2">User Dashboard</p>
       </div>
-      
+
       <div class="flex items-center gap-3 p-4 border-b border-white/10">
-        <img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-12 h-12 rounded-full border-2 border-white/20">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg"
+          class="w-12 h-12 rounded-full border-2 border-white/20">
         <div class="flex-1 min-w-0">
           <p class="font-semibold text-white text-sm truncate">John Doe</p>
           <p class="text-white/60 text-xs truncate">john.doe@email.com</p>
         </div>
       </div>
-      
+
       <nav class="sidebar-nav">
         <div class="sidebar-item active" onclick="showTab('overview')">
           <i class="fas fa-th-large w-6"></i>
@@ -279,22 +285,22 @@
         </div>
       </nav>
     </aside>
-    
+
     <!-- Main Content -->
     <main class="dashboard-main">
       <!-- Top Header -->
-      <header class="bg-white shadow-sm p-6 sticky top-0 z-40" style="background: #ffffff;">
+      <header class="bg-white dark:bg-slate-900 shadow-sm p-6 sticky top-0 z-40">
         <div class="flex justify-between items-center">
           <div class="flex items-center gap-4">
             <button onclick="toggleSidebar()" class="lg:hidden text-2xl">
               <i class="fas fa-bars"></i>
             </button>
             <div>
-              <h1 class="text-2xl font-bold">Dashboard</h1>
-              <p class="text-gray-600 text-sm">Welcome back, John!</p>
+              <h1 class="text-2xl font-bold text-slate-800 dark:text-white">Dashboard</h1>
+              <p class="text-slate-600 dark:text-gray-300 text-sm">Welcome back, John!</p>
             </div>
           </div>
-          
+
           <div class="flex items-center gap-4">
             <button onclick="toggleRTL()" class="text-2xl hover:text-primary transition">
               🌐
@@ -305,13 +311,14 @@
             <div class="relative">
               <button class="relative">
                 <i class="fas fa-bell text-2xl"></i>
-                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                <span
+                  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
               </button>
             </div>
           </div>
         </div>
       </header>
-      
+
       <div class="p-6">
         <!-- Overview Tab -->
         <div id="overview-tab" class="tab-content active">
@@ -331,7 +338,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="stat-card">
               <div class="flex items-center justify-between">
                 <div class="flex-1">
@@ -346,7 +353,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="stat-card">
               <div class="flex items-center justify-between">
                 <div class="flex-1">
@@ -361,7 +368,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="stat-card">
               <div class="flex items-center justify-between">
                 <div class="flex-1">
@@ -373,12 +380,13 @@
                 </div>
                 <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0 relative">
                   <i class="fas fa-envelope text-purple-600 text-xl"></i>
-                  <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">5</span>
+                  <span
+                    class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">5</span>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <!-- Charts Row -->
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
             <div class="stat-card">
@@ -390,7 +398,7 @@
                 <canvas id="viewsChart"></canvas>
               </div>
             </div>
-            
+
             <div class="stat-card">
               <div class="flex items-center justify-between mb-4">
                 <h3 class="text-lg font-bold">Activity Overview</h3>
@@ -401,7 +409,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Recent Activity -->
           <div class="stat-card mb-6">
             <div class="flex items-center justify-between mb-4">
@@ -409,7 +417,8 @@
               <a href="#" class="text-xs text-primary font-medium hover:underline">View All</a>
             </div>
             <div class="space-y-3">
-              <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors" style="background: var(--hover-bg);">
+              <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                style="background: var(--hover-bg);">
                 <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <i class="fas fa-heart text-primary"></i>
                 </div>
@@ -419,8 +428,9 @@
                 </div>
                 <span class="text-xs text-gray-500 flex-shrink-0">2h ago</span>
               </div>
-              
-              <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors" style="background: var(--hover-bg);">
+
+              <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                style="background: var(--hover-bg);">
                 <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <i class="fas fa-calendar-check text-green-600"></i>
                 </div>
@@ -430,8 +440,9 @@
                 </div>
                 <span class="text-xs text-gray-500 flex-shrink-0">5h ago</span>
               </div>
-              
-              <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors" style="background: var(--hover-bg);">
+
+              <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                style="background: var(--hover-bg);">
                 <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <i class="fas fa-envelope text-purple-600"></i>
                 </div>
@@ -444,7 +455,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Properties Tab -->
         <div id="properties-tab" class="tab-content">
           <div class="mb-6 flex justify-between items-center">
@@ -453,7 +464,7 @@
               <i class="fas fa-plus"></i> Add Property
             </button>
           </div>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="property-card">
               <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400" alt="Property">
@@ -480,14 +491,14 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Saved Properties Tab -->
         <div id="saved-tab" class="tab-content">
           <div class="mb-6">
             <h2 class="text-2xl font-bold">Saved Properties</h2>
             <p class="text-gray-600">Properties you've saved for later</p>
           </div>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="property-card">
               <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400" alt="Property">
@@ -511,7 +522,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="property-card">
               <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400" alt="Property">
               <div class="p-4">
@@ -536,7 +547,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Appointments Tab -->
         <div id="appointments-tab" class="tab-content">
           <div class="mb-6 flex justify-between items-center">
@@ -548,7 +559,7 @@
               <i class="fas fa-calendar-plus"></i> Schedule New
             </button>
           </div>
-          
+
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="stat-card">
               <div class="flex justify-between items-start mb-4">
@@ -577,7 +588,7 @@
                 <button class="btn btn-primary flex-1">Get Directions</button>
               </div>
             </div>
-            
+
             <div class="stat-card">
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -607,29 +618,32 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Messages Tab -->
         <div id="messages-tab" class="tab-content">
           <div class="mb-6">
             <h2 class="text-2xl font-bold">Messages</h2>
             <p class="text-gray-600">Communicate with agents and sellers</p>
           </div>
-          
+
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:col-span-1">
               <div class="stat-card">
                 <h3 class="font-bold mb-4">Conversations</h3>
                 <div class="space-y-3">
-                  <div class="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-gray-50" style="background: var(--hover-bg);">
+                  <div class="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-gray-50"
+                    style="background: var(--hover-bg);">
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-12 h-12 rounded-full">
                     <div class="flex-1">
                       <p class="font-semibold">Sarah Johnson</p>
                       <p class="text-sm text-gray-600 truncate">About Modern Apartment...</p>
                     </div>
-                    <span class="bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">2</span>
+                    <span
+                      class="bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">2</span>
                   </div>
-                  
-                  <div class="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-gray-50" style="background: var(--hover-bg);">
+
+                  <div class="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-gray-50"
+                    style="background: var(--hover-bg);">
                     <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full">
                     <div class="flex-1">
                       <p class="font-semibold">Michael Chen</p>
@@ -639,7 +653,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="lg:col-span-2">
               <div class="stat-card">
                 <div class="flex items-center gap-3 mb-6 pb-4 border-b">
@@ -651,7 +665,7 @@
                     </p>
                   </div>
                 </div>
-                
+
                 <div class="space-y-4 mb-6 h-64 overflow-y-auto">
                   <div class="flex gap-3">
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-8 h-8 rounded-full">
@@ -660,7 +674,7 @@
                       <span class="text-xs text-gray-500">10:30 AM</span>
                     </div>
                   </div>
-                  
+
                   <div class="flex gap-3 justify-end">
                     <div class="bg-primary text-white rounded-lg p-3 max-w-xs">
                       <p>That's great! What's the news?</p>
@@ -668,7 +682,7 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="flex gap-2">
                   <input type="text" placeholder="Type a message..." class="form-control flex-1">
                   <button class="btn btn-primary">
@@ -679,14 +693,14 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Analytics Tab -->
         <div id="analytics-tab" class="tab-content">
           <div class="mb-6">
             <h2 class="text-2xl font-bold">Analytics</h2>
             <p class="text-gray-600">Track your property search activity</p>
           </div>
-          
+
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <div class="stat-card">
               <h3 class="text-xl font-bold mb-4">Search Trends</h3>
@@ -694,7 +708,7 @@
                 <canvas id="searchTrendsChart"></canvas>
               </div>
             </div>
-            
+
             <div class="stat-card">
               <h3 class="text-xl font-bold mb-4">Property Categories</h3>
               <div class="chart-container">
@@ -702,7 +716,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="stat-card">
             <h3 class="text-xl font-bold mb-4">Activity Heatmap</h3>
             <div class="chart-container">
@@ -710,14 +724,14 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Settings Tab -->
         <div id="settings-tab" class="tab-content">
           <div class="mb-6">
             <h2 class="text-2xl font-bold">Settings</h2>
             <p class="text-gray-600">Manage your account preferences</p>
           </div>
-          
+
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="stat-card">
               <h3 class="text-lg font-bold mb-4">Profile Information</h3>
@@ -739,40 +753,49 @@
                 </button>
               </form>
             </div>
-            
+
             <div class="stat-card">
               <h3 class="text-lg font-bold mb-4">Preferences</h3>
               <div class="space-y-4">
-                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg" style="background: var(--hover-bg);">
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                  style="background: var(--hover-bg);">
                   <div>
                     <p class="font-semibold">Email Notifications</p>
                     <p class="text-sm text-gray-600">Receive updates via email</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    <div
+                      class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                    </div>
                   </label>
                 </div>
-                
-                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg" style="background: var(--hover-bg);">
+
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                  style="background: var(--hover-bg);">
                   <div>
                     <p class="font-semibold">SMS Notifications</p>
                     <p class="text-sm text-gray-600">Get text message alerts</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    <div
+                      class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                    </div>
                   </label>
                 </div>
-                
-                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg" style="background: var(--hover-bg);">
+
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                  style="background: var(--hover-bg);">
                   <div>
                     <p class="font-semibold">Marketing Emails</p>
                     <p class="text-sm text-gray-600">Promotions and offers</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    <div
+                      class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                    </div>
                   </label>
                 </div>
               </div>
@@ -782,7 +805,7 @@
       </div>
     </main>
   </div>
-  
+
   <script src="js/main.js"></script>
   <script src="js/rtl-toggle.js"></script>
   <script>
@@ -791,36 +814,36 @@
       document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.remove('active');
       });
-      
+
       // Remove active from all sidebar items
       document.querySelectorAll('.sidebar-item').forEach(item => {
         item.classList.remove('active');
       });
-      
+
       // Show selected tab
       document.getElementById(tabName + '-tab').classList.add('active');
-      
+
       // Add active to clicked sidebar item
       event.currentTarget.classList.add('active');
     }
-    
+
     function toggleSidebar() {
       const sidebar = document.getElementById('dashboardSidebar');
       sidebar.classList.toggle('active');
     }
-    
+
     // Close sidebar when clicking outside on mobile
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       const sidebar = document.getElementById('dashboardSidebar');
       const toggleButton = document.querySelector('[onclick="toggleSidebar()"]');
-      
+
       if (window.innerWidth < 1024 && sidebar.classList.contains('active')) {
         if (!sidebar.contains(e.target) && !toggleButton.contains(e.target)) {
           sidebar.classList.remove('active');
         }
       }
     });
-    
+
     // Initialize Charts
     const chartColors = {
       primary: '#1E40AF',
@@ -830,7 +853,7 @@
       danger: '#EF4444',
       purple: '#8B5CF6'
     };
-    
+
     // Property Views Chart
     const viewsCtx = document.getElementById('viewsChart');
     if (viewsCtx) {
@@ -862,7 +885,7 @@
         }
       });
     }
-    
+
     // Activity Chart
     const activityCtx = document.getElementById('activityChart');
     if (activityCtx) {
@@ -890,7 +913,7 @@
         }
       });
     }
-    
+
     // Search Trends Chart
     const searchTrendsCtx = document.getElementById('searchTrendsChart');
     if (searchTrendsCtx) {
@@ -914,7 +937,7 @@
         }
       });
     }
-    
+
     // Categories Chart
     const categoriesCtx = document.getElementById('categoriesChart');
     if (categoriesCtx) {
@@ -942,7 +965,7 @@
         }
       });
     }
-    
+
     // Heatmap Chart
     const heatmapCtx = document.getElementById('heatmapChart');
     if (heatmapCtx) {
@@ -968,4 +991,5 @@
     }
   </script>
 </body>
+
 </html>
