@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Mobile menu toggle - Fixed with proper event handling
   function initMobileMenu() {
     const button = document.querySelector('.mobile-menu-button');
-    const menu = document.getElementById('mobileMenu');
+    const menu = document.getElementById('mobileMenu') || document.querySelector('.mobile-menu');
 
     console.log('Initializing mobile menu...', { button: !!button, menu: !!menu });
 
