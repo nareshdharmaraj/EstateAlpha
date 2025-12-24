@@ -1,11 +1,19 @@
-```javascript
 // Main JavaScript for EstateAlpha - Enhanced Version
 
 // ==================== THEME TOGGLE FUNCTIONALITY ====================
-  // Remove existing listeners to avoid duplicates
-  toggle.removeEventListener('click', toggleTheme);
-  toggle.addEventListener('click', toggleTheme);
-});
+function initThemeToggle() {
+  console.log('Initializing Theme Toggle');
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  const themeToggles = document.querySelectorAll('.theme-toggle');
+  console.log('Found theme toggles:', themeToggles.length);
+
+  themeToggles.forEach(toggle => {
+    // Remove existing listeners to avoid duplicates
+    toggle.removeEventListener('click', toggleTheme);
+    toggle.addEventListener('click', toggleTheme);
+  });
 }
 
 function toggleTheme() {
@@ -507,7 +515,7 @@ function initParallax() {
     parallaxElements.forEach(element => {
       const speed = element.dataset.speed || 0.5;
       const yPos = -(window.pageYOffset * speed);
-      element.style.transform = `translateY(${ yPos }px)`;
+      element.style.transform = `translateY(${yPos}px)`;
     });
   });
 }
