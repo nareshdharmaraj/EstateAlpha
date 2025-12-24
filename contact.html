@@ -55,7 +55,7 @@
           <a href="login.html" class="btn btn-primary">Login</a>
         </div>
 
-        <button class="mobile-menu-button lg:hidden text-2xl">
+        <button class="mobile-menu-button lg:hidden text-2xl text-slate-800 dark:text-white focus:outline-none">
           <i class="fas fa-bars"></i>
         </button>
       </div>
@@ -90,7 +90,7 @@
 
   <!-- Hero Section -->
   <!-- Hero Section -->
-  <section class="hero-section pt-24 pb-8 md:pt-28 md:pb-12 text-white relative overflow-hidden">
+  <section class="hero-section pt-24 pb-12 md:pt-32 md:pb-16 text-white relative overflow-hidden">
     <!-- Background Image with Overlay -->
     <div class="absolute inset-0 z-0">
       <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80" alt="Contact Us"
@@ -144,7 +144,7 @@
 
       <!-- Contact Form & Map -->
       <div class="grid lg:grid-cols-2 gap-12">
-        <div data-aos="fade-right">
+        <div data-aos="fade-up">
           <h2 class="text-3xl font-bold mb-6">Send Us a Message</h2>
           <form class="space-y-6" onsubmit="handleContactForm(event)">
             <div class="grid md:grid-cols-2 gap-4">
@@ -192,7 +192,7 @@
           </form>
         </div>
 
-        <div data-aos="fade-left">
+        <div data-aos="fade-up" data-aos-delay="200">
           <h2 class="text-3xl font-bold mb-6">Visit Our Office</h2>
           <div class="rounded-2xl overflow-hidden shadow-2xl mb-6" style="height: 400px;">
             <iframe
@@ -397,46 +397,6 @@
       duration: 800,
       once: true
     });
-
-    // Mobile menu toggle - Fixed with proper event handling
-    function initMobileMenu() {
-      const button = document.querySelector('.mobile-menu-button');
-      const menu = document.getElementById('mobileMenu');
-
-      if (!button || !menu) return;
-
-      let isTogglingMenu = false;
-
-      button.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        isTogglingMenu = true;
-        menu.classList.toggle('active');
-        setTimeout(function () { isTogglingMenu = false; }, 100);
-      });
-
-      const links = menu.querySelectorAll('a');
-      links.forEach(function (link) {
-        link.addEventListener('click', function () {
-          menu.classList.remove('active');
-        });
-      });
-
-      document.addEventListener('click', function (e) {
-        if (isTogglingMenu) return;
-        if (menu.classList.contains('active')) {
-          if (!menu.contains(e.target) && !button.contains(e.target)) {
-            menu.classList.remove('active');
-          }
-        }
-      });
-
-      menu.addEventListener('click', function (e) {
-        e.stopPropagation();
-      });
-    }
-
-    initMobileMenu();
 
     function handleContactForm(event) {
       event.preventDefault();
