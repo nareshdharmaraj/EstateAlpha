@@ -140,6 +140,31 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // Active Link Highlighting
+  function highlightActiveLink() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    // Handle Dropdowns
+    document.querySelectorAll('.dropdown-menu a').forEach(link => {
+         const href = link.getAttribute('href');
+         if (href === currentPath) {
+             link.classList.add('active');
+             link.closest('.dropdown').querySelector('.nav-link').classList.add('active');
+         }
+    });
+  }
+  highlightActiveLink();
+
   // Mobile menu toggle - Fixed with proper event handling
   function initMobileMenu() {
     const button = document.querySelector('.mobile-menu-button');
